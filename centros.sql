@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2024 a las 22:00:30
+-- Tiempo de generación: 29-09-2024 a las 21:32:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `centros`
 --
+CREATE DATABASE IF NOT EXISTS `centros` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `centros`;
 
 -- --------------------------------------------------------
 
@@ -140,10 +142,9 @@ INSERT INTO `centro_sanidad` (`id_sanidad`, `nombre_sanidad`, `nombre_barrio`, `
 --
 
 CREATE TABLE `codigo_postal_centros` (
-  `ID` int(11) NOT NULL,
-  `id_educacion` int(11) DEFAULT NULL,
+  `id_educacion` int(11) NOT NULL,
   `codigo_postal_educacion` int(11) DEFAULT NULL,
-  `id_sanidad` int(11) DEFAULT NULL,
+  `id_sanidad` int(11) NOT NULL,
   `codigo_postal_sanidad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -151,43 +152,43 @@ CREATE TABLE `codigo_postal_centros` (
 -- Volcado de datos para la tabla `codigo_postal_centros`
 --
 
-INSERT INTO `codigo_postal_centros` (`ID`, `id_educacion`, `codigo_postal_educacion`, `id_sanidad`, `codigo_postal_sanidad`) VALUES
-(1, 1, 8038, 1, 8026),
-(2, 2, 8001, 2, 8028),
-(3, 3, 8027, 3, 8038),
-(4, 4, 8028, 4, 8018),
-(5, 5, 8034, 5, 8023),
-(6, 6, 8015, 6, 8024),
-(7, 7, 8032, 7, 8022),
-(8, 8, 8006, 8, 8035),
-(9, 9, 8018, 9, 8017),
-(10, 10, 8005, 10, 8001),
-(11, 11, 8024, 11, 8030),
-(12, 12, 8017, 12, 8006),
-(13, 13, 8035, 13, 8021),
-(14, 14, 8030, 14, 8034),
-(15, 15, 8003, 15, 8005),
-(16, 16, 8012, 16, 8029),
-(17, 17, 8031, 17, 8041),
-(18, 18, 8014, 18, 8027),
-(19, 19, 8022, 19, 0),
-(20, 20, 8020, 20, 8036),
-(21, 21, 8011, 21, 8033),
-(22, 22, 8042, 22, 8031),
-(23, 23, 8010, 23, 8032),
-(24, 24, 8037, 24, 8019),
-(25, 25, 8033, 25, 8014),
-(26, 26, 8025, 26, 8008),
-(27, 27, 8007, 27, 8003),
-(28, 28, 8008, 28, 8016),
-(29, 29, 8013, 29, 8037),
-(30, 30, 8029, 30, 8025),
-(31, 31, 8041, 31, 8042),
-(32, 32, 8016, 32, 8010),
-(33, 33, 8021, 33, 8020),
-(34, 34, 8002, 34, 8015),
-(35, 35, 8009, 35, 8004),
-(36, 36, 8004, 36, 8002);
+INSERT INTO `codigo_postal_centros` (`id_educacion`, `codigo_postal_educacion`, `id_sanidad`, `codigo_postal_sanidad`) VALUES
+(1, 8038, 1, 8026),
+(2, 8001, 2, 8028),
+(3, 8027, 3, 8038),
+(4, 8028, 4, 8018),
+(5, 8034, 5, 8023),
+(6, 8015, 6, 8024),
+(7, 8032, 7, 8022),
+(8, 8006, 8, 8035),
+(9, 8018, 9, 8017),
+(10, 8005, 10, 8001),
+(11, 8024, 11, 8030),
+(12, 8017, 12, 8006),
+(13, 8035, 13, 8021),
+(14, 8030, 14, 8034),
+(15, 8003, 15, 8005),
+(16, 8012, 16, 8029),
+(17, 8031, 17, 8041),
+(18, 8014, 18, 8027),
+(19, 8022, 19, 0),
+(20, 8020, 20, 8036),
+(21, 8011, 21, 8033),
+(22, 8042, 22, 8031),
+(23, 8010, 23, 8032),
+(24, 8037, 24, 8019),
+(25, 8033, 25, 8014),
+(26, 8025, 26, 8008),
+(27, 8007, 27, 8003),
+(28, 8008, 28, 8016),
+(29, 8013, 29, 8037),
+(30, 8029, 30, 8025),
+(31, 8041, 31, 8042),
+(32, 8016, 32, 8010),
+(33, 8021, 33, 8020),
+(34, 8002, 34, 8015),
+(35, 8009, 35, 8004),
+(36, 8004, 36, 8002);
 
 --
 -- Índices para tablas volcadas
@@ -211,8 +212,7 @@ ALTER TABLE `centro_sanidad`
 -- Indices de la tabla `codigo_postal_centros`
 --
 ALTER TABLE `codigo_postal_centros`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_educacion` (`id_educacion`),
+  ADD PRIMARY KEY (`id_educacion`,`id_sanidad`),
   ADD KEY `id_sanidad` (`id_sanidad`);
 
 --
@@ -223,19 +223,13 @@ ALTER TABLE `codigo_postal_centros`
 -- AUTO_INCREMENT de la tabla `centro_educacion`
 --
 ALTER TABLE `centro_educacion`
-  MODIFY `id_educacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_educacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `centro_sanidad`
 --
 ALTER TABLE `centro_sanidad`
-  MODIFY `id_sanidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT de la tabla `codigo_postal_centros`
---
-ALTER TABLE `codigo_postal_centros`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_sanidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
