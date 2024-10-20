@@ -1,7 +1,7 @@
-#INSTANCIAS Y RUTAS
+# INSTANCIAS Y RUTAS
 
 from flask import Flask, request, jsonify
-from bd import    (
+from bd import (
     llamadaCentroEducacion,
     llamadaCentroSanidad,
     insertarCentroEducacion,
@@ -15,69 +15,89 @@ from auth import validarApiKey
 
 app = Flask(__name__)
 
-#RUTA A CENTRO EDUCACION
 
+
+# RUTA A CENTRO EDUCACION
+
+
+
+# RUTA A CENTRO EDUCACION
 @app.route('/centro_educacion', methods=['GET','POST','PUT','DELETE'])
 def ObtenerCentroEducacion():
     if not validarApiKey(request):
         return jsonify({"error": "Acceso no autorizado"}), 401
-    
-    #GET: obtener centro educativo
+
+    # GET: obtener centro educativo
     if request.method == 'GET':
+        idEd = request.args.get('id_educacion')
         codigoPostalE = request.args.get('codigo_postal_educacion')
         nombreE = request.args.get('nombre_educacion')
         fechaInicioE = request.args.get('fecha_inicio')
-        respuestaE = llamadaCentroEducacion(codigoPostalE, nombreE, fechaInicioE)
-        
+
+        # Si no se proporciona ningún filtro, devolver todos los centros
+        if not codigoPostalE and not nombreE and not fechaInicioE and not idEd:
+            respuesta = llamadaCentroEducacion(None, None, None, None)  # Llamada sin parámetros
+            if respuesta:
+                return jsonify(respuesta), 200
+            else:
+                return jsonify({"error": "No se encuentran centros educativos"}), 404
+
+        # Si hay filtros, se pasa a la función con los parámetros
+        respuestaE = llamadaCentroEducacion(idEd, codigoPostalE, nombreE, fechaInicioE)
         if respuestaE:
             return jsonify(respuestaE), 200
         else:
-            return jsonify({"error": "no se encuentra el centro educativo"}), 404
+            return jsonify({"error": "No se encuentra el centro educativo con los filtros proporcionados"}), 404
 
-    #POST: insertar nuevo centro educativo
+    # POST: insertar nuevo centro educativo
     elif request.method == 'POST':
-        data=request.get_json()
-        nombreE=data.get('nombre_educacion')
-        nombreBarrio=data.get('nombre_barrio')
+        data = request.get_json()
+        nombreE = data.get('nombre_educacion')
 
-        if not nombreE or not nombreBarrio:
-            return jsonify({"error": "faltan campos requeridos"})
+        # Validar campos requeridos
+        if not nombreE:
+            return jsonify({"error": "faltan campos requeridos"}), 400
+
         try:
-            insertarCentroEducacion(nombreE, nombreBarrio)
-            return jsonify({"mensaje": "centro educativo agregado"}), 201
-        except Exception as error:
+            insertarCentroEducacion(nombreE)
+            return jsonify({"mensaje": "Centro educativo agregado"}), 201
+        except ValueError as error:
             return jsonify({"error": "error al agregar"}), 500
-    
-    #PUT: actualizar fecha_inicio a nuevaFecha
+
+    # PUT: actualizar fecha de inicio del centro educativo
     elif request.method == 'PUT':
-        data=request.get_json()
-        IdCentro=data.get('id_educacion')
-        nuevaFecha = data.get('fecha_inicio')
-    
-        if not IdCentro:
+        data = request.get_json()
+        IdCentroEd = data.get('id_educacion')  
+        nombreEd = data.get('nombre_educacion')
+
+        # Validar campos requeridos
+        if not IdCentroEd or not nombreEd:
             return jsonify({"mensaje": "faltan campos requeridos"}), 400
+
         try:
-            actualizarCentroEducacion(IdCentro, nuevaFecha)
-            return jsonify({"mensaje": "fecha de inicio actualizada"}), 200
-        except Exception as error:
+            actualizarCentroEducacion(IdCentroEd, nombreEd)
+            return jsonify({"mensaje": "id y nombre del centro de educacion actualizados"}), 200
+        except ValueError as error:
             return jsonify({"error": "error al actualizar"}), 500
 
-    #DELETE: borrar centro educativo por ID
-    elif request.method == "DELETE":
-        data=request.get_json()
-        IdCentro =data.get('id_educacion')
-        nombreE=data.get('nombre_educacion')
+    # DELETE: borrar centro educativo por ID
+    elif request.method == 'DELETE':
+        data = request.get_json()
+        IdEducacion = data.get('id_educacion')
 
-        if not IdCentro and not nombreE:
+        # Validar campos requeridos
+        if not IdEducacion:
             return jsonify({"mensaje": "faltan campos requeridos"}), 400
+
         try:
-            borrarCentroEducacion(IdCentro, nombreE)
-            return jsonify({"mensaje": "Centro educativo borrado"}), 204
-        except Exception as error:
-            return jsonify({"error":"error al borrar"}), 500
+            borrarCentroEducacion(IdEducacion)
+            return '', 204
+        except ValueError as error:
+            return jsonify({"error": "error al borrar"}), 500
 
 
-#RUTA A CENTRO SANIDAD
+
+# RUTA A CENTRO SANIDAD
 
 
 
@@ -86,58 +106,62 @@ def ObtenerCentroSanidad():
     if not validarApiKey(request):
         return jsonify({"error": "Acceso no autorizado"}), 401
     
+    # GET: obtener centro sanitario
     if request.method == 'GET':
+        idSa = request.args.get('id_sanidad')
         codigoPostalS = request.args.get('codigo_postal_sanidad')
         nombreS = request.args.get('nombre_sanidad')
         barrioS = request.args.get('nombre_barrio')
-        respuestaS = llamadaCentroSanidad(codigoPostalS, nombreS, barrioS)
-        if respuestaS:
+        respuestaS = llamadaCentroSanidad(codigoPostalS, nombreS, barrioS, idSa)
+        if respuestaS is not None:
             return jsonify(respuestaS), 200
         else:
-          return jsonify({"error": "no se encuentra el centro de sanidad"}), 404
-        data=request.get_json()
-        
-    elif request.method == 'POST':
-        data=request.get_json()
-        nombreS=data.get('nombre_sanidad')
-        nombreBarrio=data.get('nombre_barrio')
+            return jsonify({"error": "no se encuentra el centro de sanidad"}), 404
 
-        if not nombreS or not nombreBarrio:
+    # POST: insertar nuevo centro sanitario  
+    elif request.method == 'POST':
+        data = request.get_json()
+        nombreS = data.get('nombre_sanidad')
+
+        if not nombreS:
             return jsonify({"error": "faltan campos requeridos"}), 400
         try:
-            insertarCentroSanidad(nombreS, nombreBarrio)
+            insertarCentroSanidad(nombreS)
             return jsonify({"mensaje": "centro sanitario agregado"}), 201
-        except Exception as error:
+        except ValueError as error:
             return jsonify({"error": "error al agregar"}), 500
     
+    # PUT: actualizar centro sanitario
     elif request.method == 'PUT':
-        data=request.get_json()
-        nombreS=data.get('nombre_sanidad')
-        nombreBarrio=data.get('nombre_barrio')
-        codigoPostalS=data.get('codigo_postal_sanidad')
+        data = request.get_json()
+        idSanidad = data.get('id_sanidad')
+        nombreSa = data.get('nombre_sanidad')
 
-        if not nombreS or not nombreBarrio or not codigoPostalS:
+        if not idSanidad or not nombreSa:
             return jsonify({"error": "faltan campos requeridos"}), 400
         try:
-            actualizarCentroSanidad(nombreS, nombreBarrio, codigoPostalS)
-            return jsonify ({"mensaje": "centro sanitario actualizado"}), 200
-        except Exception as error:
+            actualizarCentroSanidad(idSanidad, nombreSa)
+            return jsonify ({"mensaje": "nombre del centro sanidad e ID actualizados"}), 200
+        except ValueError as error:
             return jsonify({"error": "error al actualizar"}), 500
+        
+    # DELETE: eliminar centro sanitario
     elif request.method == 'DELETE':
-        data=request.get_json()
-        codigoPostalS=data.get('codigo_postal_sanidad')
+        data = request.get_json()
+        idSanidad = data.get('id_sanidad')
 
-        if not codigoPostalS:
+        if not idSanidad:
             return jsonify({"error":"faltan campos requeridos"}), 400
         try:
-            borrarCentroSanidad(codigoPostalS)
-            return jsonify({"mensaje": "centro sanitario eliminado"}), 204
-        except Exception as error:
+            borrarCentroSanidad(idSanidad)
+            return '', 204
+        except ValueError as error:
             return jsonify({"error": "error al eliminar"}), 500
 
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001)
 
 
     
