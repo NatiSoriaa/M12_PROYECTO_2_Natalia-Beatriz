@@ -17,7 +17,20 @@ app = Flask(__name__)
 
 
 
-# RUTA A CENTRO EDUCACION
+#RUTA INDEX
+
+@app.route('/')
+def obtenerCentros():
+    #obtenemos todos los centros
+    centros_educacion = llamadaCentroEducacion(None, None, None, None)
+    centros_sanidad = llamadaCentroSanidad(None, None, None)
+
+    respuesta = {
+        "centros_educacion": centros_educacion,
+        "centros_sanidad": centros_sanidad
+    }
+
+    return jsonify(respuesta), 200
 
 
 
@@ -53,6 +66,7 @@ def ObtenerCentroEducacion():
     elif request.method == 'POST':
         data = request.get_json()
         nombreE = data.get('nombre_educacion')
+        
 
         # Validar campos requeridos
         if not nombreE:
@@ -76,24 +90,29 @@ def ObtenerCentroEducacion():
 
         try:
             actualizarCentroEducacion(IdCentroEd, nombreEd)
-            return jsonify({"mensaje": "id y nombre del centro de educacion actualizados"}), 200
+            return jsonify({"mensaje": "Id o nombre del centro de educacion actualizado"}), 200
         except ValueError as error:
             return jsonify({"error": "error al actualizar"}), 500
 
     # DELETE: borrar centro educativo por ID
     elif request.method == 'DELETE':
-        data = request.get_json()
-        IdEducacion = data.get('id_educacion')
+        IdEducacion = request.args.get('id_educacion')
 
         # Validar campos requeridos
         if not IdEducacion:
-            return jsonify({"mensaje": "faltan campos requeridos"}), 400
-
+            return jsonify({"mensaje": "ID de educacion no insertado"}), 400
+    
         try:
-            borrarCentroEducacion(IdEducacion)
-            return '', 204
+            filasBorradas = borrarCentroEducacion(IdEducacion)
+
+            if filasBorradas > 0:
+                return '', 204
+            else:
+                return jsonify({"mensaje": "Centro de educacion no encontrado"}), 404
+            
         except ValueError as error:
-            return jsonify({"error": "error al borrar"}), 500
+            return jsonify({"error": "error al borrar centro educacion por ID"}), 500
+
 
 
 
@@ -112,6 +131,7 @@ def ObtenerCentroSanidad():
         codigoPostalS = request.args.get('codigo_postal_sanidad')
         nombreS = request.args.get('nombre_sanidad')
         barrioS = request.args.get('nombre_barrio')
+
         respuestaS = llamadaCentroSanidad(codigoPostalS, nombreS, barrioS, idSa)
         if respuestaS is not None:
             return jsonify(respuestaS), 200
@@ -135,26 +155,33 @@ def ObtenerCentroSanidad():
     elif request.method == 'PUT':
         data = request.get_json()
         idSanidad = data.get('id_sanidad')
-        nombreSa = data.get('nombre_sanidad')
+        nombreS = data.get('nombre_sanidad')
 
-        if not idSanidad or not nombreSa:
+        if not idSanidad or not nombreS:
             return jsonify({"error": "faltan campos requeridos"}), 400
         try:
-            actualizarCentroSanidad(idSanidad, nombreSa)
+            resultado=actualizarCentroSanidad(idSanidad, nombreS)
+            print("Resultado de la actualización:", resultado)
             return jsonify ({"mensaje": "nombre del centro sanidad e ID actualizados"}), 200
         except ValueError as error:
             return jsonify({"error": "error al actualizar"}), 500
         
     # DELETE: eliminar centro sanitario
+
     elif request.method == 'DELETE':
         data = request.get_json()
-        idSanidad = data.get('id_sanidad')
+        idSanidad = request.args.get('id_sanidad')
 
         if not idSanidad:
             return jsonify({"error":"faltan campos requeridos"}), 400
         try:
-            borrarCentroSanidad(idSanidad)
-            return '', 204
+            filasBorradas = borrarCentroSanidad(idSanidad)
+
+            if filasBorradas > 0:
+                return '', 204
+            else:
+                return jsonify({"mensaje": "Centro de educacion no encontrado"}), 404
+            
         except ValueError as error:
             return jsonify({"error": "error al eliminar"}), 500
 

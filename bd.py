@@ -116,9 +116,21 @@ def actualizarCentroEducacion(id_educacion, nombre_educacion):
     cursor = db.cursor(dictionary=True)
     
     try:
-        consulta = "UPDATE centro_educacion SET nombre_educacion = %s WHERE id_educacion = %s"
-        cursor.execute(consulta, (nombre_educacion, id_educacion))
+        consulta = "UPDATE centro_educacion SET "
+        valores=[]
+        if nombre_educacion:
+            consulta+="nombre_educacion = %s "
+            valores.append(nombre_educacion)
+        consulta+="WHERE id_educacion = %s"
+        valores.append(id_educacion)
+
+        cursor.execute(consulta, (tuple(valores)))
         db.commit()
+
+        if cursor.rowcount > 0:
+            return {"mensaje": "Centro de educación actualizado"}, 200
+        else:
+            return {"error":"no se encontró el centro para actualizar"}, 404
 
     except mysql.Error as error:
         print(f"Error al actualizar centro educativo: {error}")
@@ -128,7 +140,7 @@ def actualizarCentroEducacion(id_educacion, nombre_educacion):
         cursor.close()
         db.close()
 
-    return {"--CENTRO DE EDUCACION ACTUALIZADO--"}
+        return {"--CENTRO DE EDUCACION ACTUALIZADO--"}
 
 # DELETE educacion
 
@@ -136,25 +148,25 @@ def borrarCentroEducacion(id_educacion):
     db = conectarDB()
 
     if not db:
-        return {"error": "error de conexion en base de datos"}
+        return 0  # Indica fallo de conexión
 
     cursor = db.cursor(dictionary=True)
 
     try:
-        if id_educacion:
-            consulta = "DELETE FROM centro_educacion WHERE id_educacion = %s"
-            cursor.execute(consulta, (id_educacion,))
+        consulta = "DELETE FROM centro_educacion WHERE id_educacion = %s"
+        cursor.execute(consulta, (id_educacion,))
         db.commit()
 
-    except mysql.Error as error:
+        # Retornamos el número de filas borradas
+        return cursor.rowcount
+
+    except mysql.connector.Error as error:
         print(f"Error al borrar centro educativo: {error}")
-        return {"error": "error al borrar"}
+        return 0  # Devolver 0 para que se interprete como error
     
     finally:
         cursor.close()
         db.close()
-
-    return {"--CENTRO DE EDUCACION ELIMINADO--"}
 
 
 # CENTRO SANIDAD
@@ -226,8 +238,14 @@ def insertarCentroSanidad(nombre_sanidad):
 
     try:
         consulta = "INSERT INTO centro_sanidad (nombre_sanidad) VALUES (%s)"
-        cursor.execute(consulta, (nombre_sanidad))
+        cursor.execute(consulta, (nombre_sanidad,))
         db.commit()
+
+        if cursor.rowcount > 0:
+            return {"mensaje": "Centro sanidad insertado"}, 201
+        else:
+            return {"error": "No se pudo insertar el centro sanidad"}, 500
+    
 
     except mysql.Error as error:
         print(f"Error en consulta: {error}")
@@ -237,7 +255,7 @@ def insertarCentroSanidad(nombre_sanidad):
         cursor.close()
         db.close()
 
-    return {"--CENTRO DE SANIDAD INSERTADO--"}
+        return {"--CENTRO DE SANIDAD INSERTADO--"}
 
 # PUT Sanidad
 
@@ -250,9 +268,23 @@ def actualizarCentroSanidad(nombre_sanidad, id_sanidad):
     cursor = db.cursor(dictionary=True)
 
     try:
-        consulta = "UPDATE centro_sanidad SET nombre_sanidad = %s, id_sanidad = %s WHERE codigo_postal_sanidad = %s"
-        cursor.execute(consulta, (nombre_sanidad, id_sanidad))
+        consulta = "UPDATE centro_sanidad SET "
+        valores=[]
+
+        if nombre_sanidad:
+            consulta +="nombre_sanidad =%s "
+            valores.append(nombre_sanidad)
+        
+        consulta+="WHERE id_sanidad = %s"
+        valores.append(id_sanidad)
+
+        cursor.execute(consulta, tuple(valores))
         db.commit()
+
+        if cursor.rowcount > 0:
+            return {"mensaje": "Centro de sanidad actualizado exitosamente"}, 200
+        else:
+            return {"error": "No se encontró el centro para actualizar"}, 404
 
     except mysql.Error as error:
         print(f"Error al actualizar centro sanitario: {error}")
@@ -262,7 +294,7 @@ def actualizarCentroSanidad(nombre_sanidad, id_sanidad):
         cursor.close()
         db.close()
 
-    return {"--CENTRO DE SANIDAD ACTUALIZADO--"}
+        return {"--CENTRO DE SANIDAD ACTUALIZADO--"}
 
 # DELETE Sanidad
 
@@ -270,7 +302,7 @@ def borrarCentroSanidad(id_sanidad):
     db = conectarDB()
 
     if not db:
-        return {"error": "error de conexion en base de datos"}
+        return 0
 
     cursor = db.cursor(dictionary=True)
 
@@ -279,13 +311,14 @@ def borrarCentroSanidad(id_sanidad):
         cursor.execute(consulta, (id_sanidad,))
         db.commit()
 
+        return cursor.rowcount
+
     except mysql.Error as error:
         print(f"Error al borrar centro sanitario: {error}")
-        return {"error": "error al borrar"}
+        return 0
     
     finally:
         cursor.close()
         db.close()
 
-
-    return {"--CENTRO DE SANIDAD ELIMINADO--"}
+        return {"--CENTRO DE SANIDAD ELIMINADO--"}
