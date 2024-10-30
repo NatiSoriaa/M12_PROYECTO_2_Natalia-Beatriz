@@ -17,10 +17,7 @@ from bd import (
     borrarCentroSanidad
 )
 
-
-
 app = Flask(__name__)
-
 
 
 # CONFIGURACION DE SWAGGER
