@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 21:32:22
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Oct 30, 2024 at 12:48 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `centros`
+-- Database: `centros`
 --
-CREATE DATABASE IF NOT EXISTS `centros` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `centros`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `centro_educacion`
+-- Table structure for table `centro_educacion`
 --
 
 CREATE TABLE `centro_educacion` (
@@ -34,10 +32,10 @@ CREATE TABLE `centro_educacion` (
   `nombre_educacion` varchar(255) NOT NULL,
   `fecha_inicio` date DEFAULT NULL,
   `codigo_postal_educacion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `centro_educacion`
+-- Dumping data for table `centro_educacion`
 --
 
 INSERT INTO `centro_educacion` (`id_educacion`, `nombre_educacion`, `fecha_inicio`, `codigo_postal_educacion`) VALUES
@@ -81,7 +79,7 @@ INSERT INTO `centro_educacion` (`id_educacion`, `nombre_educacion`, `fecha_inici
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `centro_sanidad`
+-- Table structure for table `centro_sanidad`
 --
 
 CREATE TABLE `centro_sanidad` (
@@ -89,10 +87,10 @@ CREATE TABLE `centro_sanidad` (
   `nombre_sanidad` varchar(255) NOT NULL,
   `nombre_barrio` varchar(255) DEFAULT NULL,
   `codigo_postal_sanidad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `centro_sanidad`
+-- Dumping data for table `centro_sanidad`
 --
 
 INSERT INTO `centro_sanidad` (`id_sanidad`, `nombre_sanidad`, `nombre_barrio`, `codigo_postal_sanidad`) VALUES
@@ -138,7 +136,7 @@ INSERT INTO `centro_sanidad` (`id_sanidad`, `nombre_sanidad`, `nombre_barrio`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `codigo_postal_centros`
+-- Table structure for table `codigo_postal_centros`
 --
 
 CREATE TABLE `codigo_postal_centros` (
@@ -146,10 +144,10 @@ CREATE TABLE `codigo_postal_centros` (
   `codigo_postal_educacion` int(11) DEFAULT NULL,
   `id_sanidad` int(11) NOT NULL,
   `codigo_postal_sanidad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `codigo_postal_centros`
+-- Dumping data for table `codigo_postal_centros`
 --
 
 INSERT INTO `codigo_postal_centros` (`id_educacion`, `codigo_postal_educacion`, `id_sanidad`, `codigo_postal_sanidad`) VALUES
@@ -191,56 +189,56 @@ INSERT INTO `codigo_postal_centros` (`id_educacion`, `codigo_postal_educacion`, 
 (36, 8004, 36, 8002);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `centro_educacion`
+-- Indexes for table `centro_educacion`
 --
 ALTER TABLE `centro_educacion`
   ADD PRIMARY KEY (`id_educacion`),
   ADD UNIQUE KEY `unique_codigo_postal_educacion` (`codigo_postal_educacion`);
 
 --
--- Indices de la tabla `centro_sanidad`
+-- Indexes for table `centro_sanidad`
 --
 ALTER TABLE `centro_sanidad`
   ADD PRIMARY KEY (`id_sanidad`),
   ADD UNIQUE KEY `unique_codigo_postal_sanidad` (`codigo_postal_sanidad`);
 
 --
--- Indices de la tabla `codigo_postal_centros`
+-- Indexes for table `codigo_postal_centros`
 --
 ALTER TABLE `codigo_postal_centros`
   ADD PRIMARY KEY (`id_educacion`,`id_sanidad`),
   ADD KEY `id_sanidad` (`id_sanidad`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `centro_educacion`
+-- AUTO_INCREMENT for table `centro_educacion`
 --
 ALTER TABLE `centro_educacion`
   MODIFY `id_educacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT de la tabla `centro_sanidad`
+-- AUTO_INCREMENT for table `centro_sanidad`
 --
 ALTER TABLE `centro_sanidad`
   MODIFY `id_sanidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `codigo_postal_centros`
+-- Constraints for table `codigo_postal_centros`
 --
 ALTER TABLE `codigo_postal_centros`
   ADD CONSTRAINT `codigo_postal_centros_ibfk_1` FOREIGN KEY (`id_educacion`) REFERENCES `centro_educacion` (`id_educacion`),
-  ADD CONSTRAINT `codigo_postal_centros_ibfk_2` FOREIGN KEY (`id_sanidad`) REFERENCES `centro_sanidad` (`id_sanidad`);
+  ADD CONSTRAINT `codigo_postal_centros_ibfk_2` FOREIGN KEY (`id_sanidad`) REFERENCES `centro_sanidad` (`id_sanidad`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
