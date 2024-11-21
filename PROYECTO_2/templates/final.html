@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/final.css">
-    <title>FINAL</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link href="https://fonts.cdnfonts.com/css/narrowpix" rel="stylesheet">
+
+    <title>END OF GAME</title>
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <h1>TOWER BLOCKS</h1>
+        </nav>
+    </header>
+
+    <section class="container">
+        <h2>GAME OVER</h2>
+        <div class="scoreboard">
+            <p>Score: <span id="score">0</span></p>
+            <p>Record: <span id="record">0</span></p>
+        </div>
+
+        <div class="button-container">
+            <input class= "restartButton" type="button" value="RESTART" onclick="restartGame()">
+            <input class="exitButton" type="button" value="EXIT" onclick="exitGame()">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="date">
+            <p>Countdown: <span id="date"> 00:00 </span></p>
+        </div>
+        <p>Natalia_Beatriz</p>
+    </footer>
 </body>
 </html>

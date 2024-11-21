@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/juego.css">
-    <title>JUEGO</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <title>Tower Blocks</title>
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <h1>TOWER BLOCKS</h1>
+        </nav>
+    </header>
+
+    <section class="container">
+        <section class="stats-container">
+            <p>Blocks placed: <span id="score">0</span></p>
+            <div id="instructions">Click or press the spacebar to place the block</div>
+        </section>
+        <section class="game-container">            
+        </section>  
+        <div class="side-container">
+            <p>Countdown: <span id="countdown"></span>60s</p>
+            <div class="options">
+                <input class="pause" type="button" value="pause">
+                <input class="retry" type="button" value="retry">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Natalia_Beatriz</p>
+    </footer>
 </body>
 </html>
