@@ -1,6 +1,17 @@
 // _variables.scss
-$primary-color: white;
-$secondary-color: rgba(255, 255, 255, 0.16);
+
+// Colores
+$primary-color: rgba(255, 255, 255, 0.16);
+$secondary-color: rgba(0, 0, 0, 0.3);
+$white: rgba(255, 255, 255, 1);
 $background-color: rgba(243, 243, 243, 0.205);
+
+// Fuentes
 $font-family: 'Press Start', sans-serif;
-$button-hover: #b2beb222;
+
+// Tamaños y márgenes
+$button-width: 200px;
+$button-height: 50px;
+$font-size-small: small;
+$font-size-medium: 18px;
+$font-size-large: xx-large;

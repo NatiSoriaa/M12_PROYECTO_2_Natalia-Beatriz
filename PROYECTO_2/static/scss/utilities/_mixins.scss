@@ -1,10 +1,37 @@
 // _mixins.scss
-@mixin box-shadow($x: 0, $y: 4px, $blur: 8px, $color: rgba(0, 0, 0, 0.3)) {
-    box-shadow: $x $y $blur $color, 0 0 25px rgba(0, 0, 0, 0.1);
-}
 
-@mixin flex-center {
+@mixin button-styles($bg-color, $color) {
+    background-color: $bg-color;
+    color: $color;
+    width: $button-width;
+    height: $button-height;
+    padding: 20px;
+    font-size: $font-size-medium;
+    font-family: $font-family;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+  
+    &:hover {
+      background-color: lighten($bg-color, 10%);
+    }
+  
+    &:active {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(2px);
+    }
+  }
+  
+  @mixin container-flex($width, $height) {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    width: $width;
+    height: $height;
+    gap: 20px;
+    overflow: hidden;
+  }
+  

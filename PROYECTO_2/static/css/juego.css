@@ -11,7 +11,7 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/hd/842c5a41139069.579a1518668c7.gif');
+    background-image: url('../images/juegoGIF.gif');
     background-repeat:no-repeat;
     background-size:cover;
     background-position: center center;
