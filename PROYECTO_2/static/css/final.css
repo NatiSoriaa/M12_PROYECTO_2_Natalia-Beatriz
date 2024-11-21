@@ -91,3 +91,98 @@ h2{
 /* .footer{
 
 } */
+
+@import url('https://fonts.cdnfonts.com/css/press-start');
+
+html, body{
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/hd/842c5a41139069.579a1518668c7.gif');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center center;
+    background-attachment: fixed;
+    width: 100%;
+    display:flex;
+    font-family: 'Press Start', sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+header, footer{
+    background-color: rgba(255, 255, 255, 0.16);
+    font-size:small;
+}
+
+nav{
+    margin:0;
+}
+
+.container{
+    text-align: center;
+    margin:auto;
+}
+
+h2{
+    margin-bottom:2px;
+    font-size:xx-large;
+}
+.scoreboard {
+    display:inline-block;
+    background-color: rgba(255, 255, 255, 0.073);
+    border:2px solid rgba(255, 255, 255, 0.176);
+    border-bottom: solid black;
+    border-right: solid black;
+    font-size:30px;
+    margin:5%;
+    width:300px;
+    height:150px;
+    padding:2%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.scoreboard:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); 
+}
+
+.restartButton, .exitButton{
+    background-color:rgba(255, 255, 255, 0.071);
+    color:white;
+    width:200px;
+    height:50px;
+    padding: 20px;
+    margin-top:40px;
+    font-size:18px; 
+    font-family: 'Press Start', sans-serif;
+}
+
+.restartButton:hover, .exitButton:hover {
+    background-color: #b2beb222;
+}
+
+.restartButton:active, .exitButton:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); 
+}
+
+
+
+
+
+
+
+
+
+/* .footer{
+
+} */
+
