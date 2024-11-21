@@ -1,0 +1,16 @@
+// _inicio.scss
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-image: url(../images/fondoGIF.gif);
+}
+
+nav {
+    margin: 10px;
+    padding: 10px;
+    color: $primary-color;
+    font-family: $font-family;
+    text-align: center;
+    background: $background-color;
+}

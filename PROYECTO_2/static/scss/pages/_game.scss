@@ -1,0 +1,27 @@
+// _juego.scss
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: $font-family;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/hd/842c5a41139069.579a1518668c7.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: $primary-color;
+    text-align: center;
+}
+
+.container {
+    @include flex-center;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 20px;
+    overflow: hidden;
+}

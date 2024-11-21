@@ -1,0 +1,17 @@
+// _scoreboard.scss
+.scoreboard {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.073);
+    border: 2px solid rgba(255, 255, 255, 0.176);
+    font-size: 30px;
+    margin: 5%;
+    width: 300px;
+    height: 150px;
+    padding: 2%;
+    @include box-shadow;
+
+    &:active {
+        @include box-shadow(0, 2px, 4px);
+        transform: translateY(2px);
+    }
+}

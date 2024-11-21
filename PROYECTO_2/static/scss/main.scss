@@ -1,4 +1,27 @@
-@import 'variables';
-@import 'reset';
-@import 'base';
-@import 'layout';
+// main.scss
+
+// Utilidades
+@use 'utilities/variables';
+@use 'utilities/mixins';
+
+// Base
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/background';
+
+// Layouts
+@import 'layouts/header';
+@import 'layouts/footer';
+@import 'layouts/grid';
+
+// Components
+@import 'components/buttons';
+@import 'components/scoreboard';
+
+// Pages
+@import 'pages/inicio';
+@import 'pages/juego';
+
+// Otros
+
+// @import 'components/animations';
