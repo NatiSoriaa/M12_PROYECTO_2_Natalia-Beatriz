@@ -1,10 +1,11 @@
 // _variables.scss
 
 // Colores
-$primary-color: rgba(255, 255, 255, 0.16);
-$secondary-color: rgba(0, 0, 0, 0.3);
-$white: rgba(255, 255, 255, 1);
-$background-color: rgba(243, 243, 243, 0.205);
+$primary-color: rgba(255, 255, 255, 0.16);  // Transparencia para un fondo sutil
+$secondary-color: rgba(0, 0, 0, 0.3);     // Sombra sutil
+$white: rgba(255, 255, 255, 1);           // Blanco sólido
+$background-color: rgba(243, 243, 243, 0.205);  // Fondo sutil en gris
+$black: #000000; // Color negro sólido
 
 // Fuentes
 $font-family: 'Press Start', sans-serif;
@@ -12,6 +13,6 @@ $font-family: 'Press Start', sans-serif;
 // Tamaños y márgenes
 $button-width: 200px;
 $button-height: 50px;
-$font-size-small: small;
+$font-size-small: 12px;  // Ajusté a un tamaño numérico más estándar
 $font-size-medium: 18px;
-$font-size-large: xx-large;
+$font-size-large: 24px;  // Ajusté a un tamaño numérico más estándar

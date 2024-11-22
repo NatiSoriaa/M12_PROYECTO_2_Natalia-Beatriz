@@ -1,23 +1,24 @@
-// _inicio.scss
+//index.scss
 
-@import 'variables';
-@import 'mixins';
+@use '../utilities/variables' as variables;
+@use '../utilities/mixins' as mixins;
 
 body {
   width: 100%;
   height: 100%;
   margin: 0;
   background-image: url('../images/fondoGIF.gif');
-  font-family: $font-family;
+  font-family: variables.$font-family;
+  color: variables.$white; // Asegura que el texto por defecto sea blanco
 }
 
 nav {
   margin: 10px;
   padding: 10px;
-  color: $white;
-  font-family: $font-family;
+  color: variables.$white;
+  font-family: variables.$font-family;
   text-align: center;
-  background: $background-color;
+  background: variables.$background-color;
 }
 
 div {
@@ -25,22 +26,22 @@ div {
   height: 300px;
   margin: auto;
   padding: 50px;
-  background-color: $background-color;
+  background-color: variables.$background-color; // Si este es un fondo específico, déjalo así
   text-align: center;
   align-items: center;
-  color: $white;
+  color: variables.$white;
 }
 
 div button {
-  @include button-styles($white, black);
+  @include mixins.button-styles(variables.$white, variables.$black); // Usando la variable de color negro
   margin: 100px;
 }
 
 footer {
-  background: $background-color;
+  background: variables.$background-color;
   margin: 10px;
   padding: 10px;
-  color: $white;
-  font-family: $font-family;
+  color: variables.$white;
+  font-family: variables.$font-family;
   text-align: center;
 }

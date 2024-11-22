@@ -1,7 +1,7 @@
 // _final.scss
 
-@import 'variables';
-@import 'mixins';
+@use '../utilities/variables' as variables;
+@use '../utilities/mixins' as mixins;
 
 html, body {
   height: 100%;
@@ -17,8 +17,8 @@ body {
   background-attachment: fixed;
   width: 100%;
   display: flex;
-  font-family: $font-family;
-  color: $white;
+  font-family: variables.$font-family;
+  color: variables.$white;
   text-align: center;
   flex-direction: column;
   justify-content: space-between;
@@ -26,7 +26,7 @@ body {
 
 header, footer {
   background-color: rgba(255, 255, 255, 0.16);
-  font-size: $font-size-small;
+  font-size: variables.$font-size-small;
 }
 
 nav {
@@ -40,7 +40,7 @@ nav {
 
 h2 {
   margin-bottom: 2px;
-  font-size: $font-size-large;
+  font-size: variables.$font-size-large;
 }
 
 .scoreboard {
@@ -64,7 +64,7 @@ h2 {
 }
 
 .restartButton, .exitButton {
-  @include button-styles($secondary-color, $white);
+  @include mixins.button-styles(variables.$secondary-color, variables.$white);
   margin-top: 40px;
 }
 

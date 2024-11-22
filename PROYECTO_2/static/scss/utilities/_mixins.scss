@@ -1,37 +1,32 @@
 // _mixins.scss
 
-@mixin button-styles($bg-color, $color) {
-    background-color: $bg-color;
-    color: $color;
-    width: $button-width;
-    height: $button-height;
-    padding: 20px;
-    font-size: $font-size-medium;
-    font-family: $font-family;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-  
-    &:hover {
-      background-color: lighten($bg-color, 10%);
-    }
-  
-    &:active {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
-      transform: translateY(2px);
-    }
+
+@use '../utilities/variables' as variables;
+
+@mixin button-styles($bg-color, $text-color) {
+  width: variables.$button-width;
+  height: variables.$button-height;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: variables.$font-family;
+  border: none;
+  cursor: pointer;
+  font-size: variables.$font-size-medium;
+  border-radius: 10px; // Agregué border-radius para un estilo más moderno
+
+  &:hover {
+    background-color: adjust(variables.$background-color, 10%);  // Usé lighten() en lugar de adjust()
   }
-  
-  @mixin container-flex($width, $height) {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
-    box-sizing: border-box;
-    width: $width;
-    height: $height;
-    gap: 20px;
-    overflow: hidden;
-  }
-  
+}
+
+@mixin container-flex($width, $height) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  width: $width;
+  height: $height;
+  gap: 20px;
+  overflow: hidden;
+}
