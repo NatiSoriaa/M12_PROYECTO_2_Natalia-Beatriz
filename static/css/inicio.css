@@ -76,23 +76,3 @@ div button:active {
     transform: scale(0.95);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
 }
-
-
-@media (max-width: 768px) {
-    div {
-        width: 90%;
-        height: auto;
-        padding: 20px;
-    }
-
-    div button {
-        width: 150px;
-        height: 40px;
-        font-size: 0.9rem;
-        margin-top: 50px;
-    }
-
-    nav {
-        font-size: 1rem;
-    }
-}
