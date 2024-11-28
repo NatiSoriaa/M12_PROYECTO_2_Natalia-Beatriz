@@ -1,5 +1,4 @@
-/* @import url('https://fonts.cdnfonts.com/css/press-start');
-
+@import url('https://fonts.cdnfonts.com/css/press-start');
 
 html, body{
     height:100%;
@@ -7,7 +6,6 @@ html, body{
     padding:0;
     font-family: 'Press Start', sans-serif;
 }
-
 
 body{
     display:flex;
@@ -21,26 +19,23 @@ body{
     text-align: center;
 }
 
-
 header, footer {
-    background-color: rgba(255, 255, 255, 0.16);
+    background-image: linear-gradient(#88ccee71, #005e9975);
     width:100%;
     font-size:small;
     padding: 10px 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     color: #fff;
 
-
 }
+
 footer{
     margin-top:auto;
 }
 
-
 nav{
     margin:0;
 }
-
 
 .container {
     width: 100%;
@@ -50,25 +45,30 @@ nav{
     align-items: flex-start;
     padding: 20px;
     box-sizing: border-box;
-    gap: 20px;
+    gap: 20px; 
     overflow: hidden;
 }
-
 
 .stats-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 150px;
+    width: 150px; 
     padding: 20px;
     background-image: linear-gradient(#88ccee71, #005e9975);
     color: white;
     font-size: 0.9rem;
     border: 2px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1);
+    animation: pulse 1.5s infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
+.stats-container:hover {
+    transform: translateY(-5px) scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.5);
+}
 
 .game-container {
     display: flex;
@@ -84,7 +84,54 @@ nav{
     background-size: cover;
     background-position: center;
 }
+.game-container .initialBase{
+    width: 100%;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.619);
+    border: 2px solid white;
+    margin: 20px;
 
+}
+.game-container .base{
+    width: 300px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.619);
+    border: 2px solid white;
+    position: absolute;
+    top: 90%;
+}
+.game-container .newBlock1{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 229, 255, 0.667);
+    border: 2px solid white;
+    position: absolute;
+    margin: 5px;
+}
+.game-container .newBlock2{
+    width: 70px;
+    height: 35px;
+    background-color: rgba(0, 255, 132, 0.667);
+    border: 2px solid white;
+    position: absolute;
+    top: 60%;
+}
+.game-container .block1{
+    width: 70px;
+    height: 35px;
+    background-color: rgba(255, 0, 0, 0.667);
+    border: 2px solid white;
+    position: absolute;
+    top: 80%;
+}
+.game-container .block2{
+    width: 40px;
+    height: 35px;
+    background-color: rgba(218, 255, 31, 0.667);
+    border: 2px solid white;
+    position: absolute;
+    top: 70%;
+}
 
 .side-container{
     display: flex;
@@ -94,10 +141,16 @@ nav{
     align-items: center;
     border: 2px solid white;
     background-image: linear-gradient(#88ccee71, #005e9975);
-    width: 150px;
+    width: 150px; 
     padding: 20px;
+    animation: pulse 1.5s infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
+.side-container:hover {
+    transform: translateY(-5px) scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.5);
+}
 
 .options {
     align-items: center;
@@ -105,7 +158,6 @@ nav{
     flex-direction: column;
     gap: 15px;
 }
-
 
 .options input {
     font-family: 'Press Start', sans-serif;
@@ -118,27 +170,25 @@ nav{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
+
 .options input:hover {
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.5);
 }
 
-
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; 
+        gap: 10px; 
         align-items:center;
     }
 
-
     .stats-container {
-        width: 50%;
+        width: 50%; 
     }
-
 
     .game-container {
-        width: 90%;
-        height: 60%;
+        width: 90%; 
+        height: 60%; 
     }
-} */
+}
