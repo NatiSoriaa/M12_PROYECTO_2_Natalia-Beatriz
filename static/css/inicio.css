@@ -29,9 +29,7 @@ header, footer {
     padding: 10px 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     color: #fff;
-
 }
-
 
 div {
     width: 500px;
@@ -75,4 +73,92 @@ div button:hover {
 div button:active {
     transform: scale(0.95);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+
+
+
+
+.floating-blocks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    overflow: hidden; 
+}
+
+.floating-blocks span {
+    position: absolute;
+    animation: fall 6s linear infinite; 
+    white-space: nowrap; 
+}
+
+@keyframes fall {
+    0% {
+        top: -5%; 
+        opacity: 1;
+    }
+    80% {
+        opacity: 2;
+    }
+    100% {
+        top: 110%; 
+        opacity: 0; 
+    }
+}
+
+.floating-blocks .block1 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo4.png');
+    background-size: cover;
+    left: 1%;
+    animation-delay: 0s;
+}
+
+.floating-blocks .block2 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo.png');
+    background-size: cover;
+    left: 15%;
+    animation-delay: 2s;
+}
+
+.floating-blocks .block3 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo3.png');
+    background-size: cover;
+    left: 30%;
+    animation-delay: 4s;
+}
+
+.floating-blocks .block5 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo2.png');
+    background-size: cover;
+    left: 60%;
+    animation-delay: 5s;
+}
+
+.floating-blocks .block6 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo4.png');
+    background-size: cover;
+    left: 75%;
+    animation-delay: 3s;
+}
+
+.floating-blocks .block7 {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/cubo.png');
+    background-size: cover;
+    left: 90%;
+    animation-delay: 1s;
 }
