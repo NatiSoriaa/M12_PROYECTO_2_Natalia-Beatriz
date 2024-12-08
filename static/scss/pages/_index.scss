@@ -237,11 +237,11 @@ body.inicio #instructions{
   }
 
   body.inicio .floating-blocks .block1,
-  .floating-blocks .block2,
-  .floating-blocks .block3,
-  .floating-blocks .block5,
-  .floating-blocks .block6,
-  .floating-blocks .block7 {
+  body.inicio .floating-blocks .block2,
+  body.inicio .floating-blocks .block3,
+  body.inicio .floating-blocks .block5,
+  body.inicio .floating-blocks .block6,
+  body.inicio .floating-blocks .block7 {
       width: variables.$width-floating-key;  
       height: variables.$height-floating-key; 
   }

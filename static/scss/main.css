@@ -227,11 +227,11 @@ body.inicio #instructions {
     white-space: nowrap;
   }
   body.inicio .floating-blocks .block1,
-  .floating-blocks .block2,
-  .floating-blocks .block3,
-  .floating-blocks .block5,
-  .floating-blocks .block6,
-  .floating-blocks .block7 {
+  body.inicio .floating-blocks .block2,
+  body.inicio .floating-blocks .block3,
+  body.inicio .floating-blocks .block5,
+  body.inicio .floating-blocks .block6,
+  body.inicio .floating-blocks .block7 {
     width: 70px;
     height: 70px;
   }
@@ -570,7 +570,8 @@ body.final h2 {
     opacity: 1;
   }
 }
-body.final .restartButton, .exitButton {
+body.final .restartButton,
+body.final .exitButton {
   justify-content: center;
   align-items: center;
   background-color: rgba(149, 142, 142, 0.514);
@@ -587,11 +588,13 @@ body.final .restartButton, .exitButton {
   cursor: pointer;
 }
 
-body.final .restartButton p, .exitButton p {
+body.final .restartButton p,
+body.final .exitButton p {
   margin: 0;
 }
 
-body.final .restartButton:hover, .exitButton:hover {
+body.final .restartButton:hover,
+body.final .exitButton:hover {
   background-color: rgba(114, 15, 15, 0.6941176471);
 }
 
@@ -654,7 +657,8 @@ body.final .recordboard:active {
   body.final h2 {
     margin-bottom: 20px;
   }
-  body.final .scoreboard, .recordboard {
+  body.final .scoreboard,
+  body.final .recordboard {
     position: absolute;
     margin: 5px auto;
     font-size: small;
@@ -678,7 +682,8 @@ body.final .recordboard:active {
     padding: 0;
     gap: 10px;
   }
-  body.final .exitButton, .restartButton {
+  body.final .exitButton,
+  body.final .restartButton {
     width: 150px;
   }
 }/*# sourceMappingURL=main.css.map */
