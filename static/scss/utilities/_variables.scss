@@ -1,18 +1,106 @@
 // _variables.scss
 
-// Colores
-$primary-color: rgba(255, 255, 255, 0.16);  // Transparencia para un fondo sutil
-$secondary-color: rgba(0, 0, 0, 0.3);     // Sombra sutil
-$white: rgba(255, 255, 255, 1);           // Blanco sólido
-$background-color: rgba(243, 243, 243, 0.205);  // Fondo sutil en gris
-$black: #000000; // Color negro sólido
+// COLORES
+// PRINCIPALES
+$primary-color: rgba(255, 255, 255, 0.16);
+$secondary-color: rgba(0, 0, 0, 0.3);
+$white: white;
+$background-color: rgba(243, 243, 243, 0.2);
+$black: #000000;
 
-// Fuentes
+// GAME.HTML
+$background-images: linear-gradient(#88ccee71, #005e9975);
+$text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1);
+$box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+$gameContainer: rgba(0, 0, 0, 0.619);
+$colorNewBlock1: rgba(0, 229, 255, 0.667);
+$colorNewBlock2: rgba(0, 255, 132, 0.667);
+$colorBlock1: rgba(255, 0, 0, 0.667);
+$colorBlock2: rgba(218, 255, 31, 0.667);
+
+// INDEX.HTML
+$box-shadow-index: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+$box-shadow-button: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
+$text-shadow-welcome: 2px 2px 4px #1a3c51bd;
+
+//FINAL.HTML
+$background-image-final:linear-gradient(#a566661d, #511c046e);
+$text-shadow-final:2px 2px 5px rgba(0, 0, 0, 0.5);
+$border-container-final: rgba(228, 174, 174, 0.667);
+$background-color-final:rgba(54, 45, 45, 0.874);
+$box-shadow-final:4px 4px 4px rgba(255, 45, 45, 0.548), 0 0 15px rgba(0, 0, 0, 0.1);
+$background-color-button-final:rgba(149, 142, 142, 0.514);
+$background-color-restart-exit-final:#720f0fb1;
+$box-shadow-restart-exit-final:0 2px 4px rgba(213, 93, 93, 0.514), 0 0 15px rgba(0, 0, 0, 0.1);
+$background-color-score-final:rgba(54, 45, 45, 0.747);
+$border-final: rgba(228, 174, 174, 0.667);
+$box-shadow-score-final:0 2px 4px rgba(219, 120, 120, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+
+//IMAGENES
+//INICIO
+$image-inicio:url('../images/inicioGIF.gif');
+$image-juego:url('../images/juegoGIF.gif');
+$image-final: url('../images/finalGIF.gif');
+
+// FUENTES
+@import url('https://fonts.cdnfonts.com/css/press-start');
 $font-family: 'Press Start', sans-serif;
 
-// Tamaños y márgenes
+
+// TAMAÑOS Y MARGENES
 $button-width: 200px;
 $button-height: 50px;
-$font-size-small: 12px;  // Ajusté a un tamaño numérico más estándar
+$font-size-small: 12px;
 $font-size-medium: 18px;
-$font-size-large: 24px;  // Ajusté a un tamaño numérico más estándar
+$font-size-large: 24px;
+
+// INDEX.HTML
+$width: 100%;
+$height: 100%;
+$width-instructions: 70%;
+// pixeles 
+$width-div-px: 500px;
+$height-div-px: 300px;
+$width-button-px: 200px;
+$height-button-px: 50px;
+$width-instructions-button: 150px;
+$width-instructions-key: 250px;
+$width-floating-key: 70px;
+$height-floating-key: 70px;
+// bloques
+$width-block: 100px;
+$height-block: 100px;
+
+// GAME.HTML
+//porcentaje
+$width-container-game: 70%;
+$height-container-game: 100%;
+$width-side-container:10%;
+//pixeles
+$width-container-stats: 150px;
+$height-container-stats: 20px;
+//initialBase
+$height-initialBase: 10px;
+//base
+$width-base: 300px;
+$height-base: 40px;
+//newBlock1
+$width-newBlock1: 50px;
+$height-newBlock1: 50px;
+//newBlock2
+$width-newBlock2: 70px;
+$height-newBlock2: 35px;
+//block2
+$width-Block1: 40px;
+//stats-container-key
+$width-stats-container-key:25px;
+//jey-options-button
+$width-options-button-key:30px;
+
+
+//FINAL.HTML
+$width-height-container-final: 40%;
+$width-container-final:60%;
+
+

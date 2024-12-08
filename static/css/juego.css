@@ -55,7 +55,7 @@ nav{
     align-items: center;
     justify-content: center;
     width: 150px; 
-    padding: 20px;
+    padding: 10px;
     background-image: linear-gradient(#88ccee71, #005e9975);
     color: white;
     font-size: 0.9rem;
@@ -63,6 +63,7 @@ nav{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1);
     animation: pulse 1.5s infinite;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border-radius:10px;
 }
 
 .stats-container:hover {
@@ -83,6 +84,7 @@ nav{
     background-image: linear-gradient(#88ccee71, #005e9975);
     background-size: cover;
     background-position: center;
+    border-radius:10px;
 }
 .game-container .initialBase{
     width: 100%;
@@ -146,10 +148,10 @@ nav{
     align-items: center;
     border: 2px solid white;
     background-image: linear-gradient(#88ccee71, #005e9975);
-    width: 150px; 
     padding: 20px;
     animation: pulse 1.5s infinite;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius:10px; 
 }
 
 .side-container:hover {
@@ -181,19 +183,69 @@ nav{
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.5);
 }
 
+/* Estilos básicos para los botones */
+.options button {
+    font-size: 1.5em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.options button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.5);
+}
+
+.options button i {
+    display: block;
+}
+
 @media (max-width: 768px) {
+
     .container {
-        flex-direction: column; 
+        display: grid; 
+        grid-template-columns: 90% 10%; 
+        grid-template-rows: auto auto; 
         gap: 10px; 
-        align-items:center;
+        width: 100%; 
     }
 
+    .side-container,
     .stats-container {
-        width: 50%; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+
+    }
+    .side-container{
+        width:10%;
+    }
+
+    .stats-container{
+        width:25px;
     }
 
     .game-container {
-        width: 90%; 
-        height: 60%; 
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        width: 100%; 
+        box-sizing: border-box;
+    }
+
+    .options button {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+    }
+
+    .side-container p span,
+    .stats-container p span {
+        font-weight: bold;
+        font-size: small;
     }
 }

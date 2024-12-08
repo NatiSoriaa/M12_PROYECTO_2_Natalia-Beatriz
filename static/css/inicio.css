@@ -31,6 +31,32 @@ header, footer {
     color: #fff;
 }
 
+#welcome {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px #1a3c51bd;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%); 
+    }
+    100% {
+        transform: translateX(-100%); 
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1; 
+    }
+    50% {
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1; 
+    }
+}
 div {
     width: 500px;
     height: 300px;
@@ -43,6 +69,7 @@ div {
     transition: transform 0.3s, box-shadow 0.3s;
     overflow: hidden;
     background-image: linear-gradient(#88ccee71, #005e9975);
+    border-radius: 10px;
 }
 
 div:hover {
@@ -60,7 +87,7 @@ div button {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    margin-top: 100px;
+    margin-top: 40px;
     width: 200px;
     height: 50px;
 }
@@ -74,10 +101,6 @@ div button:active {
     transform: scale(0.95);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
 }
-
-
-
-
 
 .floating-blocks {
     position: absolute;
@@ -161,4 +184,86 @@ div button:active {
     background-size: cover;
     left: 90%;
     animation-delay: 1s;
+}
+
+#instructions{
+    font-size: small;
+    margin-top:100px;
+    width: 500px;
+    animation: scrollText 10s linear infinite;
+}
+
+@media screen and (max-width: 750px){
+    div {
+        width: 70%;
+        padding: 25px;
+        display: flex;
+        flex-direction: row; /* Alinea los elementos en columna */
+        flex-wrap:wrap;
+        align-items: center; /* Centra los elementos dentro del div */
+        justify-content: center;
+        gap: 10px; 
+        border-radius: 10px;
+    }
+
+    div button {
+        height: 50px;
+        width: 150px;
+    }
+
+    #instructions {
+        font-size: small;
+        margin-top: 40px; 
+        width: 250px; 
+    }
+
+    .floating-blocks {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; 
+        overflow: hidden; 
+    }
+
+    .floating-blocks span {
+        position: absolute;
+        animation: fall 6s linear infinite;
+        white-space: nowrap; 
+    }
+
+    .floating-blocks .block1,
+    .floating-blocks .block2,
+    .floating-blocks .block3,
+    .floating-blocks .block5,
+    .floating-blocks .block6,
+    .floating-blocks .block7 {
+        width: 70px;  
+        height: 70px; 
+    }
+
+    .floating-blocks .block1 {
+        left: 0%; 
+    }
+
+    .floating-blocks .block2 {
+        left: 25%; 
+    }
+
+    .floating-blocks .block3 {
+        left: 40%;
+    }
+
+    .floating-blocks .block5 {
+        left: 60%;
+    }
+
+    .floating-blocks .block6 {
+        left: 75%;
+    }
+
+    .floating-blocks .block7 {
+        left: 90%;
+    }
 }
