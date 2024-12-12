@@ -1,0 +1,272 @@
+//index.scss
+
+@use '../utilities/variables' as variables;
+
+html, body.inicio{
+  height: variables.$height;
+  margin:0;
+  padding:0;
+  font-family: variables.$font-family;
+}
+
+body.inicio {
+  width: variables.$width;
+  height: variables.$height;
+  margin: 0;
+  background-image: variables.$image-inicio;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: variables.$white;
+  text-align: center;
+}
+
+body.inicio header,body.inicio footer {
+  background-image: variables.$background-images;
+  width: variables.$width;
+  font-size:small;
+  padding: 10px 0;
+  text-shadow: variables.$text-shadow;
+  color: variables.$white;
+}
+
+body.inicio #welcome {
+  font-size: 2em;
+  text-shadow: variables.$text-shadow-welcome;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes scrollText {
+  0% {
+      transform: translateX(100%); 
+  }
+  100% {
+      transform: translateX(-100%); 
+  }
+}
+
+@keyframes blink {
+  0% {
+      opacity: 1; 
+  }
+  50% {
+      opacity: 0; 
+  }
+  100% {
+      opacity: 1; 
+  }
+}
+
+body.inicio div {
+  width: variables.$width-div-px;
+  height: variables.$height-div-px;
+  margin: auto;
+  padding: 50px;
+  background-color: variables.$background-color;
+  text-align: center;
+  align-items: center;
+  color: variables.$white;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  background-image: variables.$background-images;
+  border-radius: 10px;
+}
+
+body.inicio div:hover {
+  transform: scale(1.05);
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.inicio div button{
+  font-family: variables.$font-family;
+  color: variables.$white;
+  background-color: variables.$gameContainer;
+  border:  2px solid variables.$white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: variables.$box-shadow;
+  transition: all 0.3s ease;
+  margin-top: 40px;
+  width: variables.$width-button-px;
+  height: variables.$height-button-px;
+}
+
+body.inicio div button:hover {
+  background-color: variables.$primary-color;
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.inicio div button:active {
+  transform: scale(0.95);
+  box-shadow: variables.$box-shadow-button;
+}
+
+body.inicio .floating-blocks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: variables.$width;
+  height: variables.$height;
+  pointer-events: none; 
+  overflow: hidden; 
+}
+
+body.inicio .floating-blocks span {
+  position: absolute;
+  animation: fall 6s linear infinite; 
+  white-space: nowrap; 
+}
+
+@keyframes fall {
+  0% {
+      top: -5%; 
+      opacity: 1;
+  }
+  80% {
+      opacity: 2;
+  }
+  100% {
+      top: 110%; 
+      opacity: 0; 
+  }
+}
+
+body.inicio .floating-blocks .block1 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo4.png');
+  background-size: cover;
+  left: 1%;
+  animation-delay: 0s;
+}
+
+body.inicio .floating-blocks .block2 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo.png');
+  background-size: cover;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+body.inicio .floating-blocks .block3 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo3.png');
+  background-size: cover;
+  left: 30%;
+  animation-delay: 4s;
+}
+
+body.inicio .floating-blocks .block5 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo2.png');
+  background-size: cover;
+  left: 60%;
+  animation-delay: 5s;
+}
+
+body.inicio .floating-blocks .block6 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo4.png');
+  background-size: cover;
+  left: 75%;
+  animation-delay: 3s;
+}
+
+body.inicio .floating-blocks .block7 {
+  width: variables.$width-block;
+  height: variables.$height-block;
+  background-image: url('../images/cubo.png');
+  background-size: cover;
+  left: 90%;
+  animation-delay: 1s;
+}
+
+body.inicio #instructions{
+  font-size: small;
+  margin-top:100px;
+  width: variables.$width-div-px;
+  animation: scrollText 10s linear infinite;
+}
+
+@media screen and (max-width: 750px){
+  body.inicio div {
+      width: variables.$width-instructions;
+      padding: 25px;
+      display: flex;
+      flex-direction: row; 
+      flex-wrap:wrap;
+      align-items: center; 
+      justify-content: center;
+      gap: 10px; 
+      border-radius: 10px;
+  }
+
+  body.inicio div button {
+      height: variables.$height-button-px;
+      width: variables.$width-instructions-button;
+  }
+
+  body.inicio #instructions {
+      font-size: small;
+      margin-top: 40px; 
+      width: variables.$width-instructions-key; 
+  }
+
+  body.inicio .floating-blocks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: variables.$width;
+      height: variables.$height;
+      pointer-events: none; 
+      overflow: hidden; 
+  }
+
+  body.inicio .floating-blocks span {
+      position: absolute;
+      animation: fall 6s linear infinite;
+      white-space: nowrap; 
+  }
+
+  body.inicio .floating-blocks .block1,
+  body.inicio .floating-blocks .block2,
+  body.inicio .floating-blocks .block3,
+  body.inicio .floating-blocks .block5,
+  body.inicio .floating-blocks .block6,
+  body.inicio .floating-blocks .block7 {
+      width: variables.$width-floating-key;  
+      height: variables.$height-floating-key; 
+  }
+
+  body.inicio .floating-blocks .block1 {
+      left: 0%; 
+  }
+
+  body.inicio .floating-blocks .block2 {
+      left: 25%; 
+  }
+
+  body.inicio .floating-blocks .block3 {
+      left: 40%;
+  }
+
+  body.inicio .floating-blocks .block5 {
+      left: 60%;
+  }
+
+  body.inicio .floating-blocks .block6 {
+      left: 75%;
+  }
+
+  body.inicio .floating-blocks .block7 {
+      left: 90%;
+  }
+}

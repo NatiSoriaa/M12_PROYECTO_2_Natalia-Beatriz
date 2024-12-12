@@ -1,0 +1,201 @@
+@import url('https://fonts.cdnfonts.com/css/press-start');
+
+html, body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    font-family: 'Press Start', sans-serif;
+
+}
+
+body{
+    background-image: url('../images/finalGIF.gif');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center center;
+    display:flex;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    flex-direction: column;
+    gap:10px;
+
+}
+
+
+header, footer{
+    background-image: linear-gradient(#a566661d, #511c046e);
+    width:100%;
+    padding: 10px 0;
+    margin:0;
+    font-size:small;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+nav{
+    margin:0;
+}
+
+
+.container{
+    border:2px solid rgba(228, 174, 174, 0.667);
+    background-color: rgba(54, 45, 45, 0.874);
+    height:40%;
+    width:40%;
+    padding:70px;
+    text-align: center;
+    margin:auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    z-index:1;
+    border-radius: 10px;
+}
+
+.container:active{
+    box-shadow: 4px 4px 4px rgba(255, 45, 45, 0.548), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); }
+
+h2{
+    margin-bottom:50px;
+    font-size:2em;
+    animation: blink 1s step-end infinite;
+
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1; 
+    }
+    50% {
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1; 
+    }
+}
+
+
+.restartButton, .exitButton {
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgba(149, 142, 142, 0.514);
+    color: white;
+    gap:20px;
+    width:200px;
+    height: 50px;
+    margin-top: 40px;
+    font-size: 15px;
+    font-family: 'Press Start', sans-serif;
+    
+    border-radius: 10px;
+    background-color: black;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.restartButton p, .exitButton p {
+    margin: 0;
+}
+
+
+.restartButton:hover, .exitButton:hover {
+    background-color: #720f0fb1;
+}
+
+.restartButton:active, .exitButton:active {
+    box-shadow: 0 2px 4px rgba(213, 93, 93, 0.514), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); 
+}
+
+.scoreboard {
+    position: absolute;
+    display: flex;
+    left: 70px; 
+    top: 100px;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px; 
+    padding: 5px;
+    margin:10px;
+    font-size: 16px;
+    background-color: rgba(54, 45, 45, 0.747);
+    border-radius: 10px;
+    border:2px solid rgba(228, 174, 174, 0.667);
+
+}
+
+.scoreboard:active {
+    box-shadow: 0 2px 4px rgba(219, 120, 120, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); 
+    background-color: black;
+}
+
+
+.recordboard {
+    position: absolute;
+    display: flex;
+    right: 70px;
+    top: 100px;   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px; 
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgba(54, 45, 45, 0.747);
+    margin:10px;
+    border-radius: 10px;
+    border:2px solid rgba(228, 174, 174, 0.667);
+
+}
+
+.recordboard:active {
+    box-shadow: 0 2px 4px rgba(219, 120, 120, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px); 
+    background-color: black;
+
+}
+
+/* responsive en móvil */
+@media screen and (max-width: 750px) {
+    body{
+        gap:10px;
+    }
+    h2{
+        margin-bottom:20px;
+    }
+    .scoreboard, .recordboard {
+        position: absolute; 
+        margin: 5px auto; 
+        font-size: small;
+        width: 150px;
+        margin:-10px;
+    }
+
+    .container {
+        width: 60%;
+        padding:25px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:10px;
+
+    }
+
+   .button-container{
+        gap:2px;
+        display:flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items:center;
+        padding:0;
+        gap:10px;
+    }
+    .exitButton, .restartButton{
+        width:150px;
+    }
+}
