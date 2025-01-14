@@ -317,9 +317,33 @@ body.juego .stats-container {
   animation: pulse 1.5s infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
+  margin: 10px;
+}
+
+body.juego .stats-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  padding: 20px;
+  background-image: linear-gradient(rgba(136, 204, 238, 0.4431372549), rgba(0, 94, 153, 0.4588235294));
+  color: white;
+  font-size: 0.9rem;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1);
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 body.juego .stats-container:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+body.juego .stats-container2:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
 }
@@ -350,11 +374,11 @@ body.juego .game-container .initialBase {
 
 body.juego .game-container .base {
   width: 300px;
-  height: 40px;
+  height: 20px;
   background-color: rgba(0, 0, 0, 0.619);
   border: 2px solid white;
   position: absolute;
-  top: 90%;
+  top: 95%;
 }
 
 body.juego .game-container div:hover {

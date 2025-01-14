@@ -50,7 +50,7 @@ body.juego .container {
   overflow: hidden;
 }
 
-body.juego .stats-container {
+body.juego .stats-container{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,9 +65,33 @@ body.juego .stats-container {
   animation: pulse 1.5s infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
   border-radius:10px;
+  margin: 10px;
+}
+
+body.juego .stats-container2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: variables.$width-container-stats;
+  padding: variables.$height-container-stats;
+  background-image: variables.$background-images;
+  color: variables.$white;
+  font-size: 0.9rem;
+  border:  2px solid variables.$white;
+  box-shadow: variables.$box-shadow;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  border-radius:10px;
+  margin: 10px;
 }
 
 body.juego .stats-container:hover {
+  transform: translateY(-5px) scale(1.05); 
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.juego .stats-container2:hover {
   transform: translateY(-5px) scale(1.05); 
   box-shadow: variables.$box-shadow-index;
 }
@@ -100,40 +124,8 @@ body.juego .game-container .base{
   background-color: variables.$gameContainer;
   border: 2px solid variables.$white;
   position: absolute;
-  top: 90%;
+  top: 95%;
 }
-// body.juego .game-container .newBlock1{
-//   width: variables.$width-newBlock1;
-//   height: variables.$height-newBlock1;
-//   background-color: variables.$colorNewBlock1;
-//   border: 2px solid variables.$white;
-//   position: absolute;
-//   margin: 5px;
-// }
-// body.juego .game-container .newBlock2{
-//   width: variables.$width-newBlock2;
-//   height: variables.$height-newBlock2;
-//   background-color: variables.$colorNewBlock2;
-//   border: 2px solid variables.$white;
-//   position: absolute;
-//   top: 60%;
-// }
-// body.juego .game-container .block1{
-//   width: variables.$width-newBlock2;
-//   height: variables.$height-newBlock2;
-//   background-color: variables.$colorBlock1;
-//   border: 2px solid variables.$white;
-//   position: absolute;
-//   top: 80%;
-// }
-// body.juego .game-container .block2{
-//   width: variables.$width-Block1;
-//   height: variables.$height-newBlock2;
-//   background-color: variables.$colorBlock2;
-//   border: 2px solid variables.$white;
-//   position: absolute;
-//   top: 70%;
-// }
 
 body.juego .game-container div:hover {
   transform: scale(1.05);
