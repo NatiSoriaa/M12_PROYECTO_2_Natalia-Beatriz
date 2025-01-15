@@ -214,6 +214,7 @@ function caerBloque(bloque) {
                     listaBloques.push(bloque);
                     bloquesGanados.push(bloque);
                     actualizarContadorBloques(bloquesGanados.length);
+
                     // Cuando la torre llegue a 4 bloques, se va dezlizando para abajo. 
                     // De esta manera evitamos que colapsen los bloques en la parte superior del container
                     
@@ -237,23 +238,6 @@ function bajarTorre() {
         let posicionActual = parseInt(bloque.style.top) || 0;
         bloque.style.top = `${posicionActual + alturaBloque}px`;
     });
-}
-
-
-
-//CONTROL DE INICIO DEL JUEGO
-
-
-
-function main() {
-    contadorInicio(() => {
-        juego(()=> {})
-        actualizarContadorBloques(0);
-        contador60sec(() => {})
-        contador5sec(()=>{})
-        crearBloquesAuto(()=> {})
-            puntuacion(()=> {})
-    })
 }
 
 
@@ -390,6 +374,24 @@ function actualizarContadorBloques(bloquesCorrectos){
     if (bloquesCorrectos > recordMaximo) {
         localStorage.setItem('recordMaximo', bloquesCorrectos);
     }
+}
+
+
+
+
+//CONTROL DE INICIO DEL JUEGO
+
+
+
+function main() {
+    contadorInicio(() => {
+        juego(()=> {})
+        actualizarContadorBloques(0);
+        contador60sec(() => {})
+        contador5sec(()=>{})
+        crearBloquesAuto(()=> {})
+            puntuacion(()=> {})
+    })
 }
 
 
