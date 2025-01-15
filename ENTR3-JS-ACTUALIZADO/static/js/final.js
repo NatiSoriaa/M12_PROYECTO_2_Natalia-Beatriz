@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (username) {
 
-                //si existe el username, inicia un array vacío si no hay nada
+                //inicia un array vacío si no hay nada
                 const scores = JSON.parse(localStorage.getItem('scores')) || [];
                 scores.push({ name: username, score: parseInt(bloquesCorrectos) || 0 });
                 localStorage.setItem('scores', JSON.stringify(scores));

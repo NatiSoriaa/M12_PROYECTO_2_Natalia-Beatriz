@@ -1,75 +1,112 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // clave para almacenar el estado del sonido en localStorage
+    //estado del sonido en localStorage
     const soundKey = 'towerBlocksSound';
-    let soundInstance;
+    let soundInstance; 
+    let secondSoundInstance; 
 
-
-    const savedState = JSON.parse(localStorage.getItem(soundKey)) || {
-        isPlaying: false, 
-        currentTime: 0,   
+    //asociamos un audio según la página
+    const page = document.body.getAttribute('data-page');
+    const soundSrc = {
+        index: "../static/audio/start-sound.mp3",
+        final: "../static/audio/death-sound.mp3",
+        game: {
+            countdown: "../static/audio/countdown.mp3",
+            game: "../static/audio/retro-sound.mp3",
+        },
     };
 
-    // función para inicializar el sonido y reproducirlo si es necesario
+    //recuperamos el estado guardado en localStorage
+    const savedState = JSON.parse(localStorage.getItem(`${soundKey}_${page}`)) || {
+        isPlaying: true, 
+        currentTime: 0,
+    };
+
     const initializeSound = () => {
-        if (!soundInstance) {
+        //configuración para la página de "game"
+        if (page === 'game') {
             soundInstance = new Howl({
-                src: ["../static/audio/ground-theme.mp3"], 
-                loop: true,  
-                volume: 0.5, 
-                onplay: () => {
-                    
-                    savedState.isPlaying = true;
-                    saveState();  
-                },
-                onpause: () => {
-                    savedState.isPlaying = false;
-                    saveState();  
+                src: [soundSrc.game.countdown],
+                loop: false, 
+                volume: 0.5,
+                onplay: () => console.log('reproduciendo countdown...'),
+                onend: () => {
+                    playSecondSound();
                 },
             });
 
-            // restablecer la posición del sonido si ya estaba pausado
-            soundInstance.seek(savedState.currentTime);
-            
-            if (savedState.isPlaying) {
+            //configuración del sonido principal del juego
+            secondSoundInstance = new Howl({
+                src: [soundSrc.game.game],
+                loop: false, 
+                volume: 0.5,
+            });
+
+            //retraso de 1.5 segundos para el countdown
+            setTimeout(() => {
                 soundInstance.play();
-            }
+            }, 1500);
+
+        } else if (soundSrc[page]) { 
+            soundInstance = new Howl({
+                src: [soundSrc[page]],
+                loop: false,
+                volume: 0.5,
+                onplay: () => {
+                    console.log(`reproduciendo sonido en ${page}`);
+                    saveState(); 
+                },
+            });
+
+            soundInstance.play();
         }
     };
 
-    // función para guardar el estado actual del sonido en localStorage
-    const saveState = () => {
-        savedState.currentTime = soundInstance.seek() || 0; 
-        // guardar el estado en localStorage
-        localStorage.setItem(soundKey, JSON.stringify(savedState));
+    //función para reproducir el segundo sonido (sonido principal del juego)
+    const playSecondSound = () => {
+        if (secondSoundInstance) {
+            secondSoundInstance.play();
+        }
     };
 
-    // función para configurar los botones de control de audio (reproducir/pausar)
-    const setupControlButtons = () => {
-        const playButton = document.getElementById('playMusic'); 
-        const pauseButton = document.getElementById('pauseMusic'); 
+    //guardar el estado en localStorage
+    const saveState = () => {
+        if (soundInstance) {
+            savedState.currentTime = soundInstance.seek() || 0;
+            localStorage.setItem(`${soundKey}_${page}`, JSON.stringify(savedState));
+        }
+    };
 
-        // agregar evento al botón de "reproducir"
+    //configurar botones de control
+    const setupControlButtons = () => {
+        const playButton = document.getElementById('playMusic');
+        const pauseButton = document.getElementById('pauseMusic');
+
         if (playButton) {
             playButton.addEventListener('click', () => {
                 if (soundInstance) {
-                    soundInstance.play();  
+                    soundInstance.play();
                 }
             });
         }
 
-        // agregar evento al botón de "pausar"
         if (pauseButton) {
             pauseButton.addEventListener('click', () => {
                 if (soundInstance) {
-                    soundInstance.pause();  
+                    soundInstance.pause();
+                }
+                if (secondSoundInstance) {
+                    secondSoundInstance.pause();
                 }
             });
         }
     };
 
-    initializeSound();
-    // configurar los botones de control
-    setupControlButtons();
-    // guardar el estado del sonido cuando la página se cierre o recargue
-    window.addEventListener('beforeunload', saveState);
+    //solo inicializa si la página tiene configurado el sonido
+    if (soundSrc[page]) {
+        initializeSound();
+        setupControlButtons();
+
+        //guardar el estado del audio al cerrar o recargar la página
+        window.addEventListener('beforeunload', saveState);
+    }
 });
