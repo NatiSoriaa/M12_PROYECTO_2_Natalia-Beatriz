@@ -1,150 +1,107 @@
 window.onload = ()=>{
+
     main();
     
     const botonPausa = document.querySelector('.pause-btn');
     botonPausa.addEventListener('click', pausarJuego);
-
-    // const botonRetry = document.querySelector('.retry-btn');
-    // botonRetry.addEventListener('click', retryJuego);
 }
 
-//variables
 
-let pausa = false; //importante aqui arriba
+
+//VARIABLES
+
+
+
+let pausa = false; 
 let intervaloJuego;
 let caerInterval
 let moverIntervalX; 
 let intervaloContador60; 
 let intervaloContador5; 
 let bloqueEnCaida;
-let bloquesCorrectos; //variable global que cuenta los bloques cque caen correctamente
+let bloquesCorrectos; 
 let listaBloques = [];
 let bloquesGanados = []; 
 
-// function apilarbL
-function juego(){//funcion que controla el inicio de juego
+
+
+
+//funcion que controla el inicio de juego
+function juego(){
     if(pausa){
-        return; //cuando el juego esta pausado, se detiene la ejecucion
+        return; 
     }
-    console.log("juego en ejecucion");
 }
 
-//simulador que inicia el juego cada segundo
-
-// function retryJuego(){
-//     console.log('Reiniciando juego');
-
-//     //limpiamos los intervalos activos
-//     // clearInterval(intervaloJuego);
-//     clearInterval(caerInterval);
-//     clearInterval(moverIntervalX);
-//     clearInterval(intervaloContador60);
-//     clearInterval(intervaloContador5);
-    
-//     localStorage.removeItem('bloquesCorrectos');
-
-//     //borramos los bloques del DOM
-//     const bloques = document.querySelectorAll('.Bloque');
-//     bloques.forEach(bloque => bloque.remove());
-
-//         //limpiamos listas y estado
-//         // listaBloques = [];
-//         bloquesGanados = [];
-//         bloquesPerdidos = [];
-
-//     actualizarContadorBloques(0);
-//     actualizarContadorBloques(bloquesGanados.length);
-
-//     //detenemos los contadores y reiniciamos el juego
-//     pausa = false;
-//     if(intervaloContador60){
-//         clearInterval(intervaloContador60); //limpiamos el contador 60
-//     }
-//     setTimeout(() => {
-//         main();
-//         // contadorInicio();
-
-
-//     }, 100);
-
-//}
-function pausarJuego(){ //permite pausar y reanudar
-    // pausa = !pausa; //Cambiar estado de juego
-    
+//permite pausar y reanudar
+function pausarJuego(){ 
     if (pausa){
-        console.log("juego pausado");
         clearInterval(intervaloCaer);
         clearInterval(intervaloMover);
         clearInterval(intervaloContador60);
         clearInterval(intervaloContador5);
     } else{
-        // caerInterval = setInterval(crearBloquesAuto, 1000);  // Asegúrate de que esto esté habilitado al reanudar
-        intervaloContador60 = setInterval(contador60sec, 1000); // Intervalo para contador de 60 segundos
+        // caerInterval = setInterval(crearBloquesAuto, 1000);  
+        intervaloContador60 = setInterval(contador60sec, 1000); 
         intervaloContador5 = setInterval(contador5sec, 1000);
         // contador60sec(() => {});
         // contador5sec(()=> {});
-        console.log("reanudado.");
     }
     pausa = !pausa;
 }
 function crearBloquesAuto() {
     intervaloJuego = setInterval(() => {
         if (!pausa) crearBloques();
-    }, 1000); // Cambia el tiempo según lo que desees
+    }, 1000); 
 }
 
 
-// intervaloJuego = setInterval(juego, 1000); 
-// function reanudarJuego(){
-
-//     if(pausa){
-//         pausa = false;
-//         setInterval(juego, 1000);
-//     }
-// }
-
-// setInterval(()=> {
-//     if(!pausa){
-//         juego();
-//     }
-// }, 1000);
 
 //JUEGO
 
-//FUNCIONES
 
-function crearBloques(){ //CREAR Y GUARDAR EN LISTA 
+
+//CREAR BLOQUE Y GUARDAR EN LISTA 
+
+
+
+function crearBloques(){ 
     if (bloqueEnCaida) {
-        return; //evita crear nuevos bloques si ya existe uno 
+        return; 
     }
     let gameSection = document.querySelector('.game-container');
     let bloque = document.createElement('div');
     
     bloque.style.position = 'absolute';
     bloque.className = 'Bloque';
-    //hacer random para el ancho y alto de los bloques
+    
     bloque.style.width =`${intervalAleatorio(30,80)}px`;
     bloque.style.height = `${intervalAleatorio(30,80)}px`
     bloque.style.background = `rgb(${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)})`;
-    // bloque.style.border = '1px solid black';
+    bloque.style.border = '1px solid white';
     bloque.style.margin = '1px';
     bloque.style.top = '0px';
     bloqueEnCaida = true;
 
     listaBloques.push(bloque);
     gameSection.appendChild(bloque);
-    
-    movidaHorizontal(bloque).then(() => { //CREA BLOQUES AUTOMATICAMENTE DESPUES DE CAER
-        caidaBloques(bloque).then(() => {
+
+    //CREA BLOQUES AUTOMATICAMENTE DESPUES DE CAER
+    movidaHorizontal(bloque).then(() => { 
+        caerBloque(bloque).then(() => {
             bloqueEnCaida = false;
             crearBloques();
         });
     });
 }
-
+//hacer random para el ancho y alto de los bloques
 function intervalAleatorio(min, max){ 
     return Math.random() * (max-min)+min;
 }
+
+
+
+// MOVIMIENTO DEL BLOQUE EN HORIZONTAL
 
 
 
@@ -152,33 +109,30 @@ function horizontalBloque(bloque) {
     return new Promise((resolve) => { 
         let posX = 0; 
         let direccion = 1;
-        const velocidadX = 30; 
+        const velocidadX = 60;
         const intervaloX = 50; 
-        const containerWidth = document.querySelector('.game-container').offsetWidth; // Ancho del contenedor
+        const containerWidth = document.querySelector('.game-container').offsetWidth; 
         const bloqueWidth = bloque.offsetWidth; 
 
-        // Asegurarse de que el bloque tiene la propiedad 'position: absolute'
         bloque.style.position = 'absolute'; 
 
-        // Mover horizontalmente
         let moverIntervalX = setInterval(() => {
             if (pausa) {
-                clearInterval(moverIntervalX); // Si el juego está pausado, detenemos el movimiento
+                clearInterval(moverIntervalX);
                 return;
             }
-            posX += velocidadX * direccion; // Incrementar la posición hacia la derecha
+            posX += velocidadX * direccion; 
 
-            // Si el bloque llega al borde del contenedor, lo detenemos
             if (posX + bloqueWidth >= containerWidth) {
                 direccion = -1;
-                posX = containerWidth - bloqueWidth; // Aseguramos que el bloque no pase el borde
+                posX = containerWidth - bloqueWidth; 
             }
             if (posX <= 0) {
-                direccion = 1; // Cambiar dirección a derecha
-                posX = 0; // Asegurar que no sobrepase el borde
+                direccion = 1; 
+                posX = 0; 
             }
-    
-            bloque.style.left = `${posX}px`; // Actualizar la posición del bloque   
+
+            bloque.style.left = `${posX}px`;  
         }, intervaloX);
         
         const gameContainer = document.querySelector('.game-container');
@@ -189,44 +143,42 @@ function horizontalBloque(bloque) {
         }, 
         { once: true }
     );
-        
     });
 }
-
 function movidaHorizontal(bloque) {
     return horizontalBloque(bloque);
 }
 
 
+
+//CAIDA DEL BLOQUE AL HACER CLICK
+
+
+
 function caerBloque(bloque) {
     return new Promise((resolve) => { 
         let pos = parseInt(bloque.style.top) || 0;
-        const velocidad = 30; 
+        const velocidad = 20; 
         const intervalo = 50; 
 
-        // Seleccionamos el largo del contenedor y ademas el hijo base
         const gameContainer = document.querySelector('.game-container').offsetHeight;
         const base = document.querySelector('.base');
         const baseTop = base.offsetTop;
         const bloqueHeight = bloque.offsetHeight;
         
-        // Altura por defecto: la base del contenedor
         let alturaFinal = baseTop
         let limiteIzquierdo = 0;
         let limiteDerecho = gameContainer.offsetWidth;
 
         if (listaBloques.length > 1) {
-            // Calculamos el ultimo bloque en la lista
             const ultimoBloque = listaBloques[listaBloques.length - 2]; 
             const alturaUltimoBloque = parseInt(ultimoBloque.style.top) || 0; 
             
-            // Se determina la altura del ultimo bloque
             alturaFinal = alturaUltimoBloque;
             
             const anchoUltimoBloque = ultimoBloque.offsetWidth;
             const posicionHorizontalUltimoBloque = parseInt(ultimoBloque.style.left) || 0;
 
-            // Creamos los limites disponibles en los que puede caer el bloque
             limiteIzquierdo = posicionHorizontalUltimoBloque;
             limiteDerecho = posicionHorizontalUltimoBloque + anchoUltimoBloque;
         }
@@ -234,7 +186,6 @@ function caerBloque(bloque) {
 
         caerInterval = setInterval(() => {
             if (pausa) {
-                // Si el juego está pausado, detenemos la caída
                 clearInterval(caerInterval); 
                 return;
             }
@@ -244,21 +195,19 @@ function caerBloque(bloque) {
             if (pos + bloqueHeight >= alturaFinal) {
                 clearInterval(caerInterval); 
 
-                // Verificar si está dentro de los límites horizontales
                 const posicionHorizontalBloque = parseInt(bloque.style.left) || 0;
 
-                // Se crea una condicion si el bloque cae a la izquierda o la derecha de la torre
                 if (posicionHorizontalBloque + bloqueWidth <= limiteIzquierdo || posicionHorizontalBloque >= limiteDerecho) 
-                {   
+                {
                     listaBloques.push(bloque);
                     // bloquesGanados.push(bloque); //solo push si lo hace bien
                     console.log("puntuaje guardado")
                     actualizarContadorBloques(bloquesGanados.length);
 
                     localStorage.setItem('bloquesCorrectos', bloquesGanados.length);
+                    
                     window.location.href = "./final.html";
                 } 
-                // Sino se va apilando al ultimo bloque de la torre y agregando a la lista
                 else 
                 {
                     bloque.style.top = `${alturaFinal - bloqueHeight}px`;
@@ -267,7 +216,8 @@ function caerBloque(bloque) {
                     actualizarContadorBloques(bloquesGanados.length);
                     // Cuando la torre llegue a 4 bloques, se va dezlizando para abajo. 
                     // De esta manera evitamos que colapsen los bloques en la parte superior del container
-                    if (listaBloques.length > 4) {
+                    
+                    if (listaBloques.length > 6) {
                         bajarTorre();
                     }
                     resolve(); 
@@ -276,51 +226,45 @@ function caerBloque(bloque) {
         }, intervalo);
     });
 }
-
-function caidaBloques(bloque) {
-    return caerBloque(bloque);
-}
-
+// BAJAR TORRE A MEDIDA QUE SE VAN APILANDO LOS BLOQUES
 function bajarTorre() {
     const alturaBloque = listaBloques[0].offsetHeight; 
 
-    // Eliminar el bloque más antiguo (el primero de la lista)
-    const bloqueInferior = listaBloques.shift(); // Eliminar el primer bloque de la lista
-    bloqueInferior.remove(); // Eliminar el bloque del DOM
+    const bloqueInferior = listaBloques.shift(); 
+    bloqueInferior.remove(); 
 
-    // Desplazar el resto de los bloques hacia abajo
     listaBloques.forEach((bloque) => {
-        let posicionActual = parseInt(bloque.style.top) || 5;
+        let posicionActual = parseInt(bloque.style.top) || 0;
         bloque.style.top = `${posicionActual + alturaBloque}px`;
     });
 }
 
 
 
+//CONTROL DE INICIO DEL JUEGO
 
-// function jugada(){
 
-// }
-
-//CONTROL JUEGO
 
 function main() {
-    actualizarContadorBloques(0);
     contadorInicio(() => {
         juego(()=> {})
+        actualizarContadorBloques(0);
         contador60sec(() => {})
         contador5sec(()=>{})
-        // crearBloques(()=>{})
         crearBloquesAuto(()=> {})
-        // actualizarContadorBloques(()=>{})
             puntuacion(()=> {})
-
     })
 }
 
 
 
 //CONTADORES
+
+
+
+//CONTADOR 3 SEGUNDOS ANTES DE INICIAR
+
+
 
 function contadorInicio(callback){
 
@@ -361,7 +305,13 @@ function contadorInicio(callback){
     },1000);
 }
 
-function contador60sec(callback){ //FUNCION ASINCRONA
+
+
+// CONTADOR 60 SEGUNDOS. TOTAL DE LA PARTIDA
+
+
+
+function contador60sec(callback){ 
     let countdown = document.getElementById('countdown');
     let tiempoRestante = 60;
 
@@ -375,20 +325,27 @@ function contador60sec(callback){ //FUNCION ASINCRONA
 
         if(tiempoRestante < 0){
             clearInterval(intervaloContador5);
-            countdown.textContent = "Se acabó!"; //redirige al final
+            countdown.textContent = "Se acabó!"; 
             setTimeout(()=>{
                 if(callback){
                     callback();
-                    window.location.href = "./final.html"; //redirigir al final
+                    window.location.href = "./final.html"; 
                 }
             }, 1000)
         }
     },1000);
 }
 
+
+
+// CONTADOR 5 SEGUNDOS. TIEMPO LIMITE PARA DAR CLICK AL BLOQUE
+
+
+
 function contador5sec(callback) {
     let cincoSec = document.getElementById('time');
     let cont5 = 5;
+
     const gameContainer = document.querySelector('.game-container');
     intervaloContador5 = setInterval(() => {
         cincoSec.textContent = `${cont5}s click`;
@@ -398,8 +355,7 @@ function contador5sec(callback) {
             clearInterval(intervaloContador5);
             return;
         }
-
-        if(cont5<0){ //cuando el contador llega a 0 
+        if(cont5 < 0){ 
             clearInterval(intervaloContador5);
             cincoSec.textContent = "KA-BOOM!";
             
@@ -407,24 +363,28 @@ function contador5sec(callback) {
                 if(callback) {
                     callback();
                     window.location.href = "./final.html";
-                } //si hacemos click en la pantalla, vuelve a empezar
+                } 
             },50);
+
         } else {
             gameContainer.addEventListener('click', function handler(){
-                console.log("has dado click!. volvemos a reiniciar el contador");
-                clearInterval(intervaloContador5); //Detenmos el contador
-                contador5sec(callback); //volvemos a llamar a la funcion
+                clearInterval(intervaloContador5); 
+                contador5sec(callback); 
             }, {once:true});
         }
+
     },1000); 
 }
 
 
-// contador de bloques que caen correctamente 
+
+// CONTADOR CANTIDAD DE BLOQUES CAIDOS CORRECTAMENTE
+
+
+//funcion que actualiza el record en el dom si el num de bloques supera el record
 function actualizarContadorBloques(bloquesCorrectos){
     const score  = document.getElementById('score');
     score.textContent = bloquesCorrectos;
-//funcion que actualiza el record en el dom si el num de bloques supera el record
 
     const recordMaximo = parseInt(localStorage.getItem('recordMaximo')) || 0;
     if (bloquesCorrectos > recordMaximo) {
