@@ -9,6 +9,4 @@ function mostrarHoraActual() {
 
 //se actualiza la hora
 setInterval(mostrarHoraActual, 1000);
-
-// Mostrar la hora inmediatamente al cargar la página
 mostrarHoraActual();

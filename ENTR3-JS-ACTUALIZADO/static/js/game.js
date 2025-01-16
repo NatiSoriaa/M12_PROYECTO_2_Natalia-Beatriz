@@ -156,7 +156,7 @@ function caerBloque(bloque) {
                 if (posicionHorizontalBloque + bloqueWidth <= limiteIzquierdo || posicionHorizontalBloque >= limiteDerecho) 
                 {
                     listaBloques.push(bloque);
-                    console.log("puntuaje guardado")
+                    console.log("¡Puntaje guardado!")
                     actualizarContadorBloques(bloquesGanados.length);
 
                     localStorage.setItem('bloquesCorrectos', bloquesGanados.length);
@@ -341,8 +341,6 @@ function main() {
         actualizarContadorBloques(0);
         contador60sec(() => {})
         contador5sec(()=>{})
-        crearBloquesAuto(()=> {})
-        puntuacion(()=> {})
     })
 }
 
