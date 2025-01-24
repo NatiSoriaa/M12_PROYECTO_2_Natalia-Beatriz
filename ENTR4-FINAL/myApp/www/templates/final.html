@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/scss/main.css">
+    <link href="https://fonts.cdnfonts.com/css/narrowpix" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>END OF GAME</title>
+</head>
+
+<body class="final" data-page="final">
+    <header> 
+        <nav>
+            <h1>TOWER BLOCKS</h1>
+        </nav>
+    </header>
+    
+    <div class="col-12 xs-12 sm-12 md-12 lg-12">
+        <div class="col-12 xs-6 sm-6 md-6 lg-6">
+            <div class="scoreboard">
+                <p>Score: <span id="finalScore">0</span></p>
+            </div>
+        </div>
+        <div class="col-12 xs-6 sm-6 md-6 lg-6">
+            <div class="recordboard">
+                <p>Record: <span id="record">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 xs-12 sm-12 md-12 lg-12">
+        <section class="container">
+            <div class="col-12 xs-4 sm-4 md-4 lg-4">
+                <h2>GAME OVER</h2>
+            </div>
+            <div class="col-12 xs-4 sm-4 md-4 lg-4">
+                <div class="button-container">
+                    <a href="game.html">
+                        <input class= "restartButton" type="button" value="RESTART" >
+                    </a>
+                    <a href="index.html">
+                        <input class="exitButton" type="button" value="EXIT">
+                    </a>   
+                </div>
+            </div>
+            <div class="col-12 xs-4 sm-4 md-4 lg-4">
+                <form id="userForm">
+                    <label for="username">Enter your name:</label></br>
+                    <input type="text" id="username" name="username" placeholder="Enter your name" required>
+                    <button type="submit"><i class="fas fa-download"></i></button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    
+    
+
+    <footer class="footer">
+        <div class="date">
+            <p id="currentTime"></p>
+        </div>
+        <p>Natalia_Beatriz</p>
+    </footer>
+
+    <script src="../static/js/final.js"></script>
+    <script src="../static/js/music.js"></script>
+    <script src="../static/js/date.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler"></script>
+
+</body>
+</html>

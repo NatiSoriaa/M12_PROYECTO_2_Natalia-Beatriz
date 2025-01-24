@@ -1,0 +1,532 @@
+// // _game.scss
+
+// @use '../utilities/variables' as variables;
+
+// html, body.juego {
+//   height: variables.$height;
+//   margin: 0;
+//   padding: 0;
+//   font-family: variables.$font-family;
+// }
+
+// body.juego {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   background-image: variables.$image-juego;  
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center center;
+//   color: variables.$white;
+//   text-align: center;
+// }
+
+// body.juego header, body.juego footer {
+//   background-image: variables.$background-images;
+//   width: variables.$width;
+//   font-size: variables.$font-size-small;
+//   padding: 10px 0;
+//   text-shadow: variables.$text-shadow;
+//   color: variables.$white;
+// }
+
+// body.juego footer {
+//   margin-top: auto;
+// }
+
+// body.juego nav {
+//   margin: 0;
+// }
+
+// body.juego .container {
+//   width: variables.$width;
+//   height: variables.$height;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   padding: 20px;
+//   box-sizing: border-box;
+//   gap: 20px;
+//   overflow: hidden;
+// }
+
+// body.juego .stats-container{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: variables.$width-container-stats;
+//   padding: variables.$height-container-stats;
+//   background-image: variables.$background-images;
+//   color: variables.$white;
+//   font-size: 0.9rem;
+//   border:  2px solid variables.$white;
+//   box-shadow: variables.$box-shadow;
+//   animation: pulse 1.5s infinite;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease; 
+//   border-radius:10px;
+//   margin: 10px;
+// }
+
+// body.juego .stats-container2{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: variables.$width-container-stats;
+//   padding: variables.$height-container-stats;
+//   background-image: variables.$background-images;
+//   color: variables.$white;
+//   font-size: 0.9rem;
+//   border:  2px solid variables.$white;
+//   box-shadow: variables.$box-shadow;
+//   animation: pulse 1.5s infinite;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease; 
+//   border-radius:10px;
+//   margin: 10px;
+// }
+
+// body.juego .stats-container:hover {
+//   transform: translateY(-5px) scale(1.05); 
+//   box-shadow: variables.$box-shadow-index;
+// }
+
+// body.juego .stats-container2:hover {
+//   transform: translateY(-5px) scale(1.05); 
+//   box-shadow: variables.$box-shadow-index;
+// }
+
+// body.juego .game-container {
+//   display: flex;
+//   flex-direction: column;
+//   width: variables.$width-container-game;
+//   height: variables.$height-container-game;
+//   border:  2px solid variables.$white;
+//   background-color: variables.$background-color;
+//   align-items: center;
+//   position: relative;
+//   overflow: hidden;
+//   background-image: variables.$background-images;
+//   background-size: cover;
+//   background-position: center;
+//   border-radius:10px;
+// }
+// body.juego .game-container .initialBase{
+//   width: variables.$width;
+//   height: variables.$height-initialBase;
+//   background-color: variables.$gameContainer;
+//   border:  2px solid variables.$white;
+//   margin: 20px;
+// }
+// body.juego .game-container .base{
+//   width: variables.$width-base;
+//   height: variables.$height-base;
+//   background-color: variables.$gameContainer;
+//   border: 2px solid variables.$white;
+//   position: absolute;
+//   top: 95%;
+// }
+
+// body.juego .game-container div:hover {
+//   transform: scale(1.05);
+//   box-shadow: variables.$box-shadow-hover;
+// }
+
+// body.juego .side-container {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+//   width: variables.$width-container-stats;
+//   align-items: center;
+//   border: 2px solid variables.$white;
+//   background-image: variables.$background-images;
+//   padding: 20px;
+//   animation: pulse 1.5s infinite;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease; 
+//   border-radius:10px; 
+// }
+// body.juego .side-container:hover {
+//   transform: translateY(-5px) scale(1.05); 
+//   box-shadow: variables.$box-shadow-index;
+// }
+
+// body.juego .options {
+//   align-items: center;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 15px;
+// }
+// body.juego .options input {
+//   font-family: 'Press Start', sans-serif;
+//   color: variables.$white;
+//   background-color: variables.$gameContainer;
+//   border: 2px solid variables.$white;
+//   border-radius: 10px;
+//   padding: 10px;
+//   cursor: pointer;
+//   box-shadow: variables.$box-shadow;
+//   transition: all 0.3s ease;
+// }
+// body.juego .options input:hover {
+//   background-color: variables.$primary-color;
+//   box-shadow: variables.$box-shadow;
+// }
+
+// body.juego .options button {
+//   font-size: 1.5em;
+//   color: variables.$white;
+//   background-color: variables.$black;
+//   border: 2px solid variables.$white;
+//   border-radius: 10px;
+//   padding: 10px;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   box-shadow: variables.$box-shadow;
+// }
+
+// body.juego .options button:hover {
+//   background-color: variables.$background-color;
+//   box-shadow: variables.$box-shadow-index;
+// }
+
+// body.juego .options button i {
+//   display: block;
+// }
+
+// @media (max-width: 750px) {
+
+//   body.juego .container {
+//       display: grid;
+//       grid-template-columns: 1fr;
+//       grid-template-rows: 1fr auto; 
+//       width: 100%;
+//       height: 100%;
+//       padding: 0;
+//       box-sizing: border-box;
+//   }
+
+
+//   body.juego .game-container {
+//       grid-column: 1 / 2;
+//       grid-row: 1 / 2;
+//       width: 100%;
+//       height: 80%; 
+//       box-sizing: border-box;
+//       overflow: hidden;
+//   }
+
+
+//   body.juego .game-container .block {
+//       width: 20vw;
+//       height: 20vw;
+//   }
+
+
+//   body.juego .side-container,
+//   body.juego .stats-container {
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       justify-content: center;
+//       width: 100%;
+//       padding: 5px 0;
+//       margin-top: 0;
+//   }
+
+
+//   body.juego .side-container p span,
+//   body.juego .stats-container p span {
+//       font-weight: bold;
+//       font-size: 1.2vw; 
+//   }
+
+
+//   body.juego .options button {
+//       width: 8vw;  
+//       height: 6vh; 
+//       padding: 0;
+//   }
+
+
+//   body.juego .side-container,
+//   body.juego .stats-container {
+//       margin: 0;
+//       padding-left: 0;
+//       padding-right: 0;
+//       height: auto;
+//   }
+
+
+//   body.juego .side-container,
+//   body.juego .stats-container {
+//       grid-row: 2 / 3;
+//       padding: 0;
+//       margin: 0;
+//   }
+
+
+//   body.juego .container {
+//       padding: 0;
+//   }
+
+// }
+
+// _game.scss
+
+@use '../utilities/variables' as variables;
+
+html, body.juego {
+  height: variables.$height;
+  height:variables.$height;
+  margin: 0;
+  padding: 0;
+  font-family: variables.$font-family;
+}
+
+body.juego {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: variables.$image-juego;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: variables.$white;
+  text-align: center;
+  gap:10px;
+
+}
+
+body.juego header, body.juego footer {
+  background-image: variables.$background-images;
+  width: variables.$width;
+  padding: 2px 0;
+  margin:0;
+  font-size:small;
+  text-shadow: variables.$text-shadow;
+  color: variables.$white;
+}
+
+
+body.juego nav {
+  margin: 0;
+}
+
+body.juego .container {
+  width: variables.$width;
+  // flex-basis:auto;
+  height: variables.$height;
+  display: flex;
+  justify-content:space-around;
+  align-items: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  // gap: 20px;
+  
+  overflow: hidden;
+}
+body.juego .stats{
+  display:flex;
+  flex-direction:column;
+
+}
+body.juego .stats-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis: auto;
+  padding: auto;
+  background-image: variables.$background-images;
+  color: variables.$white;
+  font-size: 0.9rem;
+  border:  2px solid variables.$white;
+  box-shadow: variables.$box-shadow;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius:10px;
+  margin: 10px;
+}
+
+
+body.juego .stats-container2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis:auto;
+  // width: variables.$width-container-stats;
+  padding: variables.$height-container-stats;
+  background-image: variables.$background-images;
+  color: variables.$white;
+  font-size: 0.9rem;
+  border:  2px solid variables.$white;
+  box-shadow: variables.$box-shadow;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius:10px;
+  margin: 10px;
+}
+
+body.juego .stats-container:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.juego .stats-container2:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.juego .game-container {
+  display: flex;
+  flex-direction: column;
+  width: variables.$width-container-game;
+  flex-basis:auto;
+  align-content:stretch;
+  height: variables.$height-container-game;
+  border:  2px solid variables.$white;
+  background-color: variables.$background-color;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-image: variables.$background-images;
+  background-size: cover;
+  background-position: center;
+  border-radius:10px;
+}
+body.juego .game-container .initialBase{
+  width: variables.$width;
+  height: variables.$height-initialBase;
+  background-color: variables.$gameContainer;
+  border:  2px solid variables.$white;
+  margin: 20px;
+}
+body.juego .game-container .base{
+  width: variables.$width-base;
+  height: variables.$height-base;
+  background-color: variables.$gameContainer;
+  border: 2px solid variables.$white;
+  position: absolute;
+  top: 95%;
+}
+
+body.juego .game-container div:hover {
+  transform: scale(1.05);
+  box-shadow: variables.$box-shadow-hover;
+}
+
+body.juego .side-container {
+  margin-top:10px;
+  flex-direction: column;
+  gap: 10px;
+  // width: variables.$width-container-stats;
+  flex-basis:auto;
+  border: 2px solid variables.$white;
+  background-image: variables.$background-images;
+  padding: 15px;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius:10px;
+}
+body.juego .side-container:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.juego .options {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body.juego .options input {
+  font-family: 'Press Start', sans-serif;
+  color: variables.$white;
+  background-color: variables.$gameContainer;
+  border: 2px solid variables.$white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: variables.$box-shadow;
+  transition: all 0.3s ease;
+}
+body.juego .options input:hover {
+  background-color: variables.$primary-color;
+  box-shadow: variables.$box-shadow;
+}
+
+body.juego .options button {
+  font-size: 1.5em;
+  color: variables.$white;
+  background-color: variables.$black;
+  border: 2px solid variables.$white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: variables.$box-shadow;
+}
+
+body.juego .options button:hover {
+  background-color: variables.$background-color;
+  box-shadow: variables.$box-shadow-index;
+}
+
+body.juego .options button i {
+  display: block;
+}
+
+
+@media (max-width: 750px) {
+  body.juego .container {
+    display: grid;
+    grid-template-columns: 1fr 9fr; 
+    grid-template-rows: auto; 
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    font-size:small;
+  }
+
+
+  body.juego .stats {
+    grid-column: 1 / 2;
+    grid-row: 1; 
+    width:100px;
+    margin-top:20px;
+    // font-size:small;
+
+  }
+
+  body.juego .stats-container2{
+    font-size:small;
+  }
+  body.juego .stats-container{
+    font-size:x-small;
+  }
+
+  body.juego .side-container {
+    grid-column: 1 / 2;
+    grid-row: 3; 
+    width:50px;
+    margin-left:10px;
+  }
+
+  body.juego .game-container {
+    grid-column: 2; 
+    grid-row: 1 / 4; 
+    width: 93%;
+    margin: 20px; 
+    height:95%;
+    padding: 0;
+    box-sizing: border-box; 
+  }
+
+  body.juego .options button {
+    width: 10vw;
+    height: 7vh;
+    padding: 0;
+  }
+}

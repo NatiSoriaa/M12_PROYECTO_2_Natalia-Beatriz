@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/scss/main.css">
+    <link href="https://fonts.cdnfonts.com/css/narrowpix" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Tower Blocks</title>
+</head>
+<body class="juego" data-page="game">
+    <header>
+        <nav>
+            <h1>TOWER BLOCKS</h1>
+        </nav>
+    </header>
+
+    <section class="container">
+        <section class="left-column">
+
+            <section class="stats">
+                <section class="stats-container">
+                    <p><span id="score">0</span> blocks</p>
+                </section>
+
+                <section class="stats-container2">
+                    <p><span id="time">5s click</span></p>
+                </section>
+            </section>
+        </section>
+
+
+        <section class="game-container">
+            <div class="initialBase"></div>
+            <div class="base"></div>
+        </section>  
+
+        <div class="side-container">
+            <div class="options">
+                <p> <span id="countdown">60s</span></p>
+                    <a href="game.html">
+                        <button class="retry-btn"><i class="fas fa-redo"></i></button>
+                    </a>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer class="footer">
+            <div class="date">
+            <p id="currentTime"></p>
+            </div>
+            <p>Natalia_Beatriz</p>
+    </footer>
+
+    <script src="../static/js/game.js"></script>
+    <script src="../static/js/music.js"></script>
+    <script src="../static/js/date.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler"></script>
+
+
+</body>
+</html>
