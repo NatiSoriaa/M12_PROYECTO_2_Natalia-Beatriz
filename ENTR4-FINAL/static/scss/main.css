@@ -128,7 +128,7 @@ body.inicio div button:active {
 
 body.inicio .floating-blocks {
   position: absolute;
-  top: 0;
+  top: -50;
   left: 0;
   width: 100%;
   height: 100%;
@@ -162,6 +162,7 @@ body.inicio .floating-blocks .block1 {
   background-size: cover;
   left: 1%;
   animation-delay: 0s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block2 {
@@ -171,6 +172,7 @@ body.inicio .floating-blocks .block2 {
   background-size: cover;
   left: 15%;
   animation-delay: 2s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block3 {
@@ -180,6 +182,7 @@ body.inicio .floating-blocks .block3 {
   background-size: cover;
   left: 30%;
   animation-delay: 4s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block5 {
@@ -189,6 +192,7 @@ body.inicio .floating-blocks .block5 {
   background-size: cover;
   left: 60%;
   animation-delay: 5s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block6 {
@@ -198,6 +202,7 @@ body.inicio .floating-blocks .block6 {
   background-size: cover;
   left: 75%;
   animation-delay: 3s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block7 {
@@ -207,6 +212,7 @@ body.inicio .floating-blocks .block7 {
   background-size: cover;
   left: 90%;
   animation-delay: 1s;
+  top: -100px;
 }
 
 body.inicio #instructions {
