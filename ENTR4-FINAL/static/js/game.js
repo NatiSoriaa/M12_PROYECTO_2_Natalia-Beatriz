@@ -77,7 +77,7 @@ function horizontalBloque(bloque) {
     return new Promise((resolve) => { 
         let posX = 0; 
         let direccion = 1;
-        let velocidadX = window.innerWidth <= 750 ? 35 : 50;
+        let velocidadX = window.innerWidth <= 750 ? 30 : 50;
         const intervaloX = 50; 
         const containerWidth = document.querySelector('.game-container').offsetWidth; 
         const bloqueWidth = bloque.offsetWidth; 
