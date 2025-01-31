@@ -34,9 +34,17 @@ function crearBloques(){
     
     bloque.style.position = 'absolute';
     bloque.className = 'Bloque';
+
+    let bloqueWidth = intervalAleatorio(30, 80);
+    let bloqueHeight = intervalAleatorio(30, 80);
     
-    bloque.style.width =`${intervalAleatorio(30,80)}px`;
-    bloque.style.height = `${intervalAleatorio(30,80)}px`
+    if (window.innerWidth <= 750) {
+        bloqueWidth = intervalAleatorio(30, 50);  
+        bloqueHeight = intervalAleatorio(30, 50);
+    }
+
+    bloque.style.width =`${bloqueWidth}px`;
+    bloque.style.height = `${bloqueHeight}px`
     bloque.style.background = `rgb(${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)})`;
     bloque.style.border = '1px solid white';
     bloque.style.margin = '1px';
@@ -69,7 +77,7 @@ function horizontalBloque(bloque) {
     return new Promise((resolve) => { 
         let posX = 0; 
         let direccion = 1;
-        const velocidadX = 50;
+        let velocidadX = window.innerWidth <= 750 ? 35 : 50;
         const intervaloX = 50; 
         const containerWidth = document.querySelector('.game-container').offsetWidth; 
         const bloqueWidth = bloque.offsetWidth; 
