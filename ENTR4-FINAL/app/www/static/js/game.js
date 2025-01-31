@@ -1,7 +1,5 @@
 window.onload = ()=>{
-
     main();
-
 }
 
 //VARIABLES
@@ -36,9 +34,17 @@ function crearBloques(){
     
     bloque.style.position = 'absolute';
     bloque.className = 'Bloque';
+
+    let bloqueWidth = intervalAleatorio(30, 80);
+    let bloqueHeight = intervalAleatorio(30, 80);
     
-    bloque.style.width =`${intervalAleatorio(30,80)}px`;
-    bloque.style.height = `${intervalAleatorio(30,80)}px`
+    if (window.innerWidth <= 750) {
+        bloqueWidth = intervalAleatorio(30, 50);  
+        bloqueHeight = intervalAleatorio(30, 50);
+    }
+
+    bloque.style.width =`${bloqueWidth}px`;
+    bloque.style.height = `${bloqueHeight}px`
     bloque.style.background = `rgb(${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)}, ${intervalAleatorio(100, 255)})`;
     bloque.style.border = '1px solid white';
     bloque.style.margin = '1px';
@@ -48,8 +54,8 @@ function crearBloques(){
     listaBloques.push(bloque);
     gameSection.appendChild(bloque);
 
-    //CREA BLOQUES AUTOMATICAMENTE DESPUES DE CAER
-    movidaHorizontal(bloque).then(() => { 
+    // CREA BLOQUES AUTOMATICAMENTE DESPUES DE CAER
+    horizontalBloque(bloque).then(() => { 
         caerBloque(bloque).then(() => {
             bloqueEnCaida = false;
             crearBloques();
@@ -71,7 +77,7 @@ function horizontalBloque(bloque) {
     return new Promise((resolve) => { 
         let posX = 0; 
         let direccion = 1;
-        const velocidadX = 55;
+        let velocidadX = window.innerWidth <= 750 ? 35 : 50;
         const intervaloX = 50; 
         const containerWidth = document.querySelector('.game-container').offsetWidth; 
         const bloqueWidth = bloque.offsetWidth; 
@@ -104,9 +110,6 @@ function horizontalBloque(bloque) {
     );
     });
 }
-function movidaHorizontal(bloque) {
-    return horizontalBloque(bloque);
-}
 
 
 
@@ -117,8 +120,8 @@ function movidaHorizontal(bloque) {
 function caerBloque(bloque) {
     return new Promise((resolve) => { 
         let pos = parseInt(bloque.style.top) || 0;
-        const velocidad = 20; 
-        const intervalo = 50; 
+        const velocidad = 30; 
+        const intervalo = 50;
 
         const gameContainer = document.querySelector('.game-container').offsetHeight;
         const base = document.querySelector('.base');
@@ -155,14 +158,12 @@ function caerBloque(bloque) {
 
                 if (posicionHorizontalBloque + bloqueWidth <= limiteIzquierdo || posicionHorizontalBloque >= limiteDerecho) 
                 {
-                    listaBloques.push(bloque);
-                    console.log("¡Puntaje guardado!")
+                    //listaBloques.push(bloque);
                     actualizarContadorBloques(bloquesGanados.length);
-
                     localStorage.setItem('bloquesCorrectos', bloquesGanados.length);
-                    
+                    console.log("¡Puntaje guardado!")
                     window.location.href = "./final.html";
-                } 
+                }
                 else 
                 {
                     bloque.style.top = `${alturaFinal - bloqueHeight}px`;
@@ -338,9 +339,9 @@ function actualizarContadorBloques(bloquesCorrectos){
 function main() {
     contadorInicio(() => {
         crearBloques(()=> {})
-        actualizarContadorBloques(0);
         contador60sec(() => {})
         contador5sec(()=>{})
+        actualizarContadorBloques(0);
     })
 }
 

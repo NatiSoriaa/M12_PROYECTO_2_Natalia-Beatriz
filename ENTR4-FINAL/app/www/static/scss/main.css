@@ -128,7 +128,7 @@ body.inicio div button:active {
 
 body.inicio .floating-blocks {
   position: absolute;
-  top: 0;
+  top: -50;
   left: 0;
   width: 100%;
   height: 100%;
@@ -162,6 +162,7 @@ body.inicio .floating-blocks .block1 {
   background-size: cover;
   left: 1%;
   animation-delay: 0s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block2 {
@@ -171,6 +172,7 @@ body.inicio .floating-blocks .block2 {
   background-size: cover;
   left: 15%;
   animation-delay: 2s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block3 {
@@ -180,6 +182,7 @@ body.inicio .floating-blocks .block3 {
   background-size: cover;
   left: 30%;
   animation-delay: 4s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block5 {
@@ -189,6 +192,7 @@ body.inicio .floating-blocks .block5 {
   background-size: cover;
   left: 60%;
   animation-delay: 5s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block6 {
@@ -198,6 +202,7 @@ body.inicio .floating-blocks .block6 {
   background-size: cover;
   left: 75%;
   animation-delay: 3s;
+  top: -100px;
 }
 
 body.inicio .floating-blocks .block7 {
@@ -207,6 +212,7 @@ body.inicio .floating-blocks .block7 {
   background-size: cover;
   left: 90%;
   animation-delay: 1s;
+  top: -100px;
 }
 
 body.inicio #instructions {
@@ -521,44 +527,63 @@ body.juego .options button i {
 @media (max-width: 750px) {
   body.juego .container {
     display: grid;
-    grid-template-columns: 1fr 9fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     width: 100%;
     height: 100%;
     padding: 0;
     box-sizing: border-box;
-    font-size: small;
   }
   body.juego .stats {
-    grid-column: 1/2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    grid-column: 1;
     grid-row: 1;
-    width: 100px;
-    margin-top: 20px;
+    width: 250px;
+    margin-bottom: 10px;
+  }
+  body.juego .stats-container,
+  body.juego .stats-container2 {
+    font-size: x-small;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px;
+    margin: 0px 10px;
   }
   body.juego .stats-container2 {
-    font-size: small;
+    margin: 0px 20px 0px 0px;
   }
-  body.juego .stats-container {
-    font-size: x-small;
+  body.juego .side-container .options {
+    display: flex;
+    flex-direction: row;
   }
   body.juego .side-container {
-    grid-column: 1/2;
-    grid-row: 3;
-    width: 50px;
-    margin-left: 10px;
+    grid-row: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 70px;
+    font-size: x-small;
+    position: absolute;
+    right: 35px;
+    padding: 0px 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
   }
   body.juego .game-container {
-    grid-column: 2;
-    grid-row: 1/4;
-    width: 93%;
-    margin: 20px;
-    height: 95%;
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
     padding: 0;
     box-sizing: border-box;
   }
   body.juego .options button {
-    width: 10vw;
-    height: 7vh;
+    font-size: x-small;
+    width: 7vw;
+    height: 5vh;
     padding: 0;
   }
 }

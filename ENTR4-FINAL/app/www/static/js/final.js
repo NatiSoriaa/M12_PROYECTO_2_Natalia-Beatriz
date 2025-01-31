@@ -34,22 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 const scores = JSON.parse(localStorage.getItem('scores')) || [];
                 scores.push({ name: username, score: parseInt(bloquesCorrectos) || 0 });
                 localStorage.setItem('scores', JSON.stringify(scores));
-
-
-                //CREACION Y DESCARGA DEL ARCHIVO TXT
-
-                const fileContent = `Username: ${username}\nScore: ${bloquesCorrectos}`;
-                const blob = new Blob([fileContent], { type: 'text/plain' });
-
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'tower_blocks_user_data.txt';
-
-                link.click();
-
-                userForm.reset(); 
                 
-                alert('Se ha descargado el archivo correctamente.');
+                //Descarga del archivo
+                try {
+                    
+                    const fileContent = `Username: ${username}\nScore: ${bloquesCorrectos}`;
+                    const blob = new Blob([fileContent], { type: 'text/plain' });
+            
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'tower_blocks_user_data.txt';
+                    document.body.appendChild(link);
+                    link.click();
+            
+                    userForm.reset(); 
+
+            
+                } catch (error) {
+                    //error de descarga    
+                    alert('No se puede descargar');
+                }
             } else {
                 alert('Introduzca su nombre de usuario.');
             }
